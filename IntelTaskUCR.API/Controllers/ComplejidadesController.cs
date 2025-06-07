@@ -37,20 +37,20 @@ namespace IntelTaskUCR.API.Controllers
         public async Task<IActionResult> Update(byte id, [FromBody] EComplejidades entity)
         {
 
-            EComplejidades findUser = await _repository.GetByIdAsync(id);
+            EComplejidades findComplejidad = await _repository.GetByIdAsync(id);
 
-            if (findUser != null)
+            if (findComplejidad != null)
             {
                 //findUser.CN_Id_complejidad = entity.CN_Id_complejidad; 
-                findUser.CT_Nombre = entity.CT_Nombre;
+                findComplejidad.CT_Nombre = entity.CT_Nombre;
 
-                await _repository.UpdateAsync(findUser);
+                await _repository.UpdateAsync(findComplejidad);
                 return NoContent();
 
             }
             else
             {
-                return NotFound("El id del usuario no existe");
+                return NotFound("El id de la complejidad no existe");
             }
         }
 
