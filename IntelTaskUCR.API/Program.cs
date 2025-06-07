@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<IntelTaskDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DemoConnection")));
 builder.Services.AddScoped<IDemoRepository,DemoRepository>();
+builder.Services.AddScoped<IUsuariosRepository,UsuariosRepository>();
 
 // Add services to the container.
 
