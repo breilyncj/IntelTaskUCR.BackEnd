@@ -14,6 +14,7 @@ builder.Services.AddScoped<IRolesRepository,RolesRepository>();
 builder.Services.AddScoped<IOficinasRepository,OficinasRepository>();
 builder.Services.AddScoped<IComplejidadesRepository, ComplejidadesRepository>();
 builder.Services.AddScoped<IFrecuenciaRecordatorioRepository, FrecuenciaRecordatorioRepository>();
+builder.Services.AddScoped<IEstadosRepository, EstadoRepository>();
 
 // Add services to the container.
 
