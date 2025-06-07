@@ -10,6 +10,8 @@ builder.Services.AddDbContext<IntelTaskDbContext>(options => options.UseSqlServe
 builder.Services.AddScoped<IDemoRepository,DemoRepository>();
 builder.Services.AddScoped<IUsuariosRepository,UsuariosRepository>();
 builder.Services.AddScoped<ITareasRepository,TareasRepository>();
+builder.Services.AddScoped<IRolesRepository,RolesRepository>();
+builder.Services.AddScoped<IOficinasRepository,OficinasRepository>();
 
 // Add services to the container.
 

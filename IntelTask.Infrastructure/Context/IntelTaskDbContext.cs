@@ -14,6 +14,10 @@ namespace IntelTaskUCR.Infrastructure.Context
 
         public DbSet<ETareas> T_Tareas { get; set; } 
 
+        public DbSet<ERoles> T_Roles { get; set; }
+
+        public DbSet<EOficinas> T_Oficinas { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<EDemo>().ToTable("T_Demo");
@@ -24,6 +28,12 @@ namespace IntelTaskUCR.Infrastructure.Context
 
             modelBuilder.Entity<ETareas>().ToTable("T_Tareas");
             modelBuilder.Entity<ETareas>().HasKey(d => d.CN_Id_tarea);
+
+            modelBuilder.Entity<ERoles>().ToTable("T_Roles");
+            modelBuilder.Entity<ERoles>().HasKey(d => d.CN_Id_rol);
+
+            modelBuilder.Entity<EOficinas>().ToTable("T_Oficinas");
+            modelBuilder.Entity<EOficinas>().HasKey(d => d.CN_Codigo_oficina);
         }
     }
 }
