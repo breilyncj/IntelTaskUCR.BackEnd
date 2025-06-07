@@ -18,6 +18,8 @@ namespace IntelTaskUCR.Infrastructure.Context
 
         public DbSet<EOficinas> T_Oficinas { get; set; }
 
+        public DbSet<EComplejidades> T_Complejidades   { get; set; } 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<EDemo>().ToTable("T_Demo");
@@ -34,6 +36,9 @@ namespace IntelTaskUCR.Infrastructure.Context
 
             modelBuilder.Entity<EOficinas>().ToTable("T_Oficinas");
             modelBuilder.Entity<EOficinas>().HasKey(d => d.CN_Codigo_oficina);
+
+            modelBuilder.Entity<EComplejidades>().ToTable("T_Complejidades");
+            modelBuilder.Entity<EComplejidades>().HasKey(d => d.CN_Id_complejidad);
         }
     }
 }
