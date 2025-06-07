@@ -19,6 +19,8 @@ namespace IntelTaskUCR.Infrastructure.Context
         public DbSet<EOficinas> T_Oficinas { get; set; }
 
         public DbSet<EComplejidades> T_Complejidades   { get; set; } 
+        
+        public DbSet<EFrecuenciaRecordatorio> T_Frecuecia_Recordatorio { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -39,6 +41,9 @@ namespace IntelTaskUCR.Infrastructure.Context
 
             modelBuilder.Entity<EComplejidades>().ToTable("T_Complejidades");
             modelBuilder.Entity<EComplejidades>().HasKey(d => d.CN_Id_complejidad);
+
+            modelBuilder.Entity<EFrecuenciaRecordatorio>().ToTable("T_Frecuencia_Recordatorio");
+            modelBuilder.Entity<EFrecuenciaRecordatorio>().HasKey(d => d.CN_Id_recordatorio);
         }
     }
 }
