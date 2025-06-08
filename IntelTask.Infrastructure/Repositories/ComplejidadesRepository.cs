@@ -24,10 +24,22 @@ namespace IntelTaskUCR.Infrastructure.Repositories
         {
             return await _context.T_Complejidades.ToListAsync();
         }
+        public async Task<IEnumerable<EComplejidades>> GetAllWithTareasAsync()
+        {
+            return await _context.T_Complejidades
+                .Include(t => t.Tareas)
+                .ToListAsync();
+        }
 
         public async Task<EComplejidades?> GetByIdAsync(byte id)
         {
             return await _context.T_Complejidades.FindAsync(id);
+        }
+        public async Task<EComplejidades?> GetByIdWithTareasAsync(byte id)
+        {
+            return await _context.T_Complejidades
+                .Include(t => t.Tareas)
+                .FirstOrDefaultAsync(t => t.CN_Id_complejidad == id);
         }
 
         //Guarda

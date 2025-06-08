@@ -10,8 +10,12 @@ namespace IntelTaskUCR.Domain.Interfaces
     public interface IComplejidadesRepository
     {
         Task<IEnumerable<EComplejidades>> GetAllAsync();
+        
+        Task<IEnumerable<EComplejidades>> GetAllWithTareasAsync();
 
         Task<EComplejidades?> GetByIdAsync(byte id);
+        
+        Task<EComplejidades?> GetByIdWithTareasAsync(byte id);
 
         Task AddAsync(EComplejidades complejidad);
 

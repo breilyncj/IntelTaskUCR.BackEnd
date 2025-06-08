@@ -43,6 +43,8 @@ namespace IntelTaskUCR.Domain.Entities
         
         public EPrioridades? Prioridades { get; set; }
         
+        public EComplejidades? Complejidades { get; set; }
+        
         // Propiedad de navegacion (uno a muchos)
         
         public ICollection<ETareas>? TareasHijas { get; set; }

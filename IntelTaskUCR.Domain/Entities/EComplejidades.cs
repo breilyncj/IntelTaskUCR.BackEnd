@@ -10,9 +10,9 @@ namespace IntelTaskUCR.Domain.Entities
 {
     public class EComplejidades
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public byte CN_Id_complejidad { get; set; }
         public string CT_Nombre { get; set; } 
+        
+        public ICollection<ETareas>? Tareas { get; set; }
     }
 }

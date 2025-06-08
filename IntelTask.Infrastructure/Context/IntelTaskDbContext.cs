@@ -53,6 +53,11 @@ namespace IntelTaskUCR.Infrastructure.Context
                             .HasForeignKey(d => d.CN_Tarea_origen) //Clave foranea -- compljeidades estados  prioridades
                             .OnDelete(DeleteBehavior.Restrict);
                         
+                        modelBuilder.Entity<ETareas>()
+                            .HasOne(t => t.Complejidades)
+                            .WithMany(t => t.Tareas)
+                            .HasForeignKey(t => t.CN_Id_complejidad)
+                            .OnDelete(DeleteBehavior.Restrict);
                         
                         modelBuilder.Entity<ETareas>()
                             .HasOne(t => t.Prioridades)

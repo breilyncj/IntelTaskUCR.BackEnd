@@ -23,6 +23,8 @@
         
         public PrioridadesDTO? Prioridades { get; set; }
         
+        public ComplejidadesDto? Complejidades { get; set; }
+        
         public List<TareasDto>? TareasHijas { get; set; }
         
         public List<TareaIncumplimientoDto>? TareasIncumplimientos { get; set; }

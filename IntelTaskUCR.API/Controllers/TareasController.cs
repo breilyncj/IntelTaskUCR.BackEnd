@@ -169,7 +169,11 @@ namespace IntelTaskUCR.API.Controllers
                 CT_Descripcion_prioridad = t.Prioridades.CT_Descripcion_prioridad
             } : null,
             
-            
+            Complejidades = t.Complejidades != null ? new ComplejidadesDto()
+            {
+                CN_Id_complejidad = t.Complejidades.CN_Id_complejidad,
+                CT_Nombre = t.Complejidades.CT_Nombre,
+            } : null,
 
             TareasHijas = t.TareasHijas?.Select(hijas => new TareasDto
             {
