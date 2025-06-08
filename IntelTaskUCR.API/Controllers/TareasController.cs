@@ -96,21 +96,6 @@ namespace IntelTaskUCR.API.Controllers
             await _repository.DeleteAsync(id);
             return NoContent();
         }
-
-        private TareasDto mapToDtoWithIncumplimientos(ETareas t) => new TareasDto
-        {
-            CN_Id_tarea = t.CN_Id_tarea,
-            CN_Tarea_origen = t.CN_Tarea_origen,
-            CT_Titulo_tarea = t.CT_Titulo_tarea,
-            CT_Descripcion_tarea = t.CT_Descripcion_tarea,
-            CT_Descripcion_espera = t.CT_Descripcion_espera,
-            CN_Id_complejidad = t.CN_Id_complejidad,
-            CN_Id_estado = t.CN_Id_estado,
-            CN_Id_prioridad = t.CN_Id_prioridad,
-            CN_Numero_GIS = t.CN_Numero_GIS,
-            CF_Fecha_asignacion = t.CF_Fecha_asignacion,
-            
-        };
         
         private TareasDto MapToDto(ETareas t) => new TareasDto
         {

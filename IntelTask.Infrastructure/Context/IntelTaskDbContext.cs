@@ -76,7 +76,7 @@ namespace IntelTaskUCR.Infrastructure.Context
                             .HasOne(d => d.Tareas)
                             .WithMany(t => t.TareasIncumplimientos)
                             .HasForeignKey(d => d.CN_Id_tarea)
-                            .OnDelete(DeleteBehavior.ClientSetNull);
+                            .OnDelete(DeleteBehavior.Restrict);
 
                         modelBuilder.Entity<ENotificaciones>().ToTable("T_Notificaciones");
                         modelBuilder.Entity<ENotificaciones>().HasKey(d => d.CN_Id_notificacion);
