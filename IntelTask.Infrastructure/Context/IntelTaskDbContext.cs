@@ -25,6 +25,8 @@ namespace IntelTaskUCR.Infrastructure.Context
         public DbSet<EEstados> T_Estados { get ; set; } 
 
         public DbSet<EPrioridades> T_Prioridades { get; set; }
+
+        public DbSet<ENotificaciones> T_Notificaciones { get; set; } 
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
                 {
@@ -54,6 +56,9 @@ namespace IntelTaskUCR.Infrastructure.Context
 
                         modelBuilder.Entity<EPrioridades>().ToTable("T_Prioridades");
                         modelBuilder.Entity<EPrioridades>().HasKey(d => d.CN_Id_prioridad);
+
+                        modelBuilder.Entity<ENotificaciones>().ToTable("T_Notificaciones");
+                        modelBuilder.Entity<ENotificaciones>().HasKey(d => d.CN_Id_notificacion);
 
                 }
     }
