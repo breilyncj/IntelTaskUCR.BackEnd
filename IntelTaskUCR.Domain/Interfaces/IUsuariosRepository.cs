@@ -10,8 +10,12 @@ namespace IntelTaskUCR.Domain.Interfaces
     public interface IUsuariosRepository
     {
         Task<IEnumerable<EUsuarios>> GetAllAsync();
+        
+        Task<IEnumerable<EUsuarios>> GetAllWithRelacionesAsync();
 
         Task<EUsuarios?> GetByIdAsync(int id);
+        
+        Task<EUsuarios?> GetByIdWithFrecuenciaRecordatorioAsync(int id);
 
         Task AddAsync(EUsuarios usuarios);
 

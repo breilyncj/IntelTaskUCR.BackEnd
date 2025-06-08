@@ -10,6 +10,8 @@ namespace IntelTaskUCR.Domain.Interfaces
     public interface ITareasRepository
     {
         Task<IEnumerable<ETareas>> GetAllAsync();
+        
+        Task<IEnumerable<ETareas>> GetAllWithRelacionesAsync();
 
         Task<ETareas?> GetByIdAsync(int id);
         

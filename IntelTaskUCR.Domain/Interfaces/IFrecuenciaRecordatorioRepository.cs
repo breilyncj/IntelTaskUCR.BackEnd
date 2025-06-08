@@ -11,8 +11,12 @@ namespace IntelTaskUCR.Domain.Interfaces
     {
 
         Task<IEnumerable<EFrecuenciaRecordatorio>> GetAllAsync();
+        
+        Task<IEnumerable<EFrecuenciaRecordatorio>> GetAllWithUsuariosAsync();
 
         Task<EFrecuenciaRecordatorio?> GetByIdAsync(int id);
+        
+        Task<EFrecuenciaRecordatorio?> GetByIdWithUsuariosAsync(int id);
 
         Task AddAsync(EFrecuenciaRecordatorio frecuenciaRecordatorio);
 

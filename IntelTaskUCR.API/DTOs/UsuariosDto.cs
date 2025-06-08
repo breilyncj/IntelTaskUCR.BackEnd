@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace IntelTaskUCR.Domain.Entities
+﻿namespace IntelTaskUCR.API.DTOs
 {
-    public class EUsuarios
+    public class UsuariosDto
     {
-
         public int CN_Id_usuario { get; set; } 
 
         public string CT_Nombre_usuario { get; set; } 
@@ -27,10 +20,6 @@ namespace IntelTaskUCR.Domain.Entities
 
         public int CN_Id_rol { get; set; } 
         
-        
-        // Propiedad de navegacion (uno a muchos)
-        
-        public ICollection<EFrecuenciaRecordatorio>? FrecuenciaRecordatorios { get; set; }
-
+        public List<FrecuenciaRecordatorioDto>? FrecuenciaRecordatorios { get; set; }
     }
 }

@@ -65,6 +65,12 @@ namespace IntelTaskUCR.Infrastructure.Context
                         modelBuilder.Entity<EFrecuenciaRecordatorio>().ToTable("T_Frecuencia_Recordatorio");
                         modelBuilder.Entity<EFrecuenciaRecordatorio>().HasKey(d => d.CN_Id_recordatorio);
 
+                        modelBuilder.Entity<EFrecuenciaRecordatorio>()
+                            .HasOne(d => d.Usuarios)
+                            .WithMany(d => d.FrecuenciaRecordatorios)
+                            .HasForeignKey(d => d.CN_Id_usuario_creador)
+                            .OnDelete(DeleteBehavior.Restrict);
+                        
                         modelBuilder.Entity<EEstados>().ToTable("T_Estados");
                         modelBuilder.Entity<EEstados>().HasKey(d => d.CN_Id_estado);
 

@@ -27,6 +27,14 @@ namespace IntelTaskUCR.API.Controllers
             var dtoList = tareas.Select(MapToDto);
             return Ok(dtoList);
         }
+        
+        [HttpGet("withRelaciones")]
+        public async Task<IActionResult> GetAllWithRelaciones()
+        {
+            var tareas = await _repository.GetAllWithRelacionesAsync();
+            var dtoList = tareas.Select(MapToDto);
+            return Ok(dtoList);
+        }
 
         // [HttpGet("{id}")]
         // public async Task<IActionResult> Get(int id)

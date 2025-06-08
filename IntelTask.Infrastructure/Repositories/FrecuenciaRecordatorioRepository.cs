@@ -20,6 +20,12 @@ namespace IntelTaskUCR.Infrastructure.Repositories
             _context = context;
         }
 
+        public async Task<EFrecuenciaRecordatorio?> GetByIdWithUsuariosAsync(int id)
+        {
+            return await _context.T_Frecuecia_Recordatorio
+                .Include(i => i.Usuarios)
+                .FirstOrDefaultAsync(i => i.CN_Id_recordatorio == id);
+        }
         public async Task AddAsync(EFrecuenciaRecordatorio frecuenciaRecordatorio)
         {
             await _context.T_Frecuecia_Recordatorio.AddAsync(frecuenciaRecordatorio);
@@ -40,6 +46,12 @@ namespace IntelTaskUCR.Infrastructure.Repositories
         public async Task<IEnumerable<EFrecuenciaRecordatorio>> GetAllAsync()
         {
             return await _context.T_Frecuecia_Recordatorio.ToListAsync();
+        }
+        public async Task<IEnumerable<EFrecuenciaRecordatorio>> GetAllWithUsuariosAsync()
+        {
+            return await _context.T_Frecuecia_Recordatorio
+                .Include(i => i.Usuarios)
+                .ToListAsync();
         }
 
         public async Task<EFrecuenciaRecordatorio?> GetByIdAsync(int id)

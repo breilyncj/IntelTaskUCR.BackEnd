@@ -24,11 +24,25 @@ namespace IntelTaskUCR.Infrastructure.Repositories
         {
             return await _context.T_Usuarios.ToListAsync();
         }
+        public async Task<IEnumerable<EUsuarios>> GetAllWithRelacionesAsync()
+        {
+            return await _context.T_Usuarios
+                .Include(u => u.FrecuenciaRecordatorios)
+                .ToListAsync();
+        }
 
         public async Task<EUsuarios?> GetByIdAsync(int id)
         {
             return await _context.T_Usuarios.FindAsync(id);
         }
+        public async Task<EUsuarios?> GetByIdWithFrecuenciaRecordatorioAsync(int id)
+        {
+            return await _context.T_Usuarios
+                .Include(t => t.FrecuenciaRecordatorios)
+                .FirstOrDefaultAsync(t => t.CN_Id_usuario == id);
+        }
+
+
 
         //Guarda
         public async Task AddAsync(EUsuarios usuarios)

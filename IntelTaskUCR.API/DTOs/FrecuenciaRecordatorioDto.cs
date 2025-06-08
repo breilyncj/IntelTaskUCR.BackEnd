@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using IntelTaskUCR.Domain.Entities;
 
-namespace IntelTaskUCR.Domain.Entities
+namespace IntelTaskUCR.API.DTOs
 {
-    public class EFrecuenciaRecordatorio
+    public class FrecuenciaRecordatorioDto
     {
-
         public int CN_Id_recordatorio { get; set; }
         public string CT_Texto_recordatorio { get; set; }
         public DateTime CF_Fecha_hora_registro { get; set; }
@@ -19,7 +14,6 @@ namespace IntelTaskUCR.Domain.Entities
         public int CN_Id_usuario_creador { get; set; }
         public bool CB_Estado {  get; set; }
         
-        public EUsuarios? Usuarios { get; set; }
-
+        public UsuariosDto? Usuarios { get; set; }
     }
 }
