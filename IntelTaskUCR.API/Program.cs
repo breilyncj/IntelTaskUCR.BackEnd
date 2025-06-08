@@ -20,7 +20,7 @@ builder.Services.AddScoped<INotificacionesRepository, NotificacionesRepository>(
 builder.Services.AddScoped<ITareasIncumplimientosRepository, TareasIncumplimientosRepository>();
 builder.Services.AddScoped<ITareasJustificacionRechazoRepository, TareasJustificacionRechazoRepository>();
 builder.Services.AddScoped<ITareasSeguimientoRepository, TareasSeguimientoRepository>();
-
+builder.Services.AddScoped<INotificacionesXUsuariosRepository, NotificacionesXUsuariosRepository>();
 
 
 // Add services to the container.
