@@ -18,7 +18,7 @@ builder.Services.AddScoped<IEstadosRepository, EstadoRepository>();
 builder.Services.AddScoped<IPrioridadesRepository, PrioridadesRepository>();
 builder.Services.AddScoped<INotificacionesRepository, NotificacionesRepository>();
 builder.Services.AddScoped<ITareasIncumplimientosRepository, TareasIncumplimientosRepository>();
-
+builder.Services.AddScoped<ITareasJustificacionRechazoRepository, TareasJustificacionRechazoRepository>();
 
 
 // Add services to the container.
