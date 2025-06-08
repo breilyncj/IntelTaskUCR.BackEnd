@@ -32,6 +32,8 @@ namespace IntelTaskUCR.Infrastructure.Context
 
         public DbSet<ETareasJustificacionRechazo> T_Tareas_Justificacion_Rechazo { get; set; }
 
+        public DbSet<ETareasSeguimiento> T_Tareas_Seguimiento { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
                 {
                         modelBuilder.Entity<EDemo>().ToTable("T_Demo");
@@ -69,6 +71,9 @@ namespace IntelTaskUCR.Infrastructure.Context
 
                         modelBuilder.Entity<ETareasJustificacionRechazo>().ToTable("T_Tareas_Justificacion_Rechazo");
                         modelBuilder.Entity<ETareasJustificacionRechazo>().HasKey(d => d.CN_Id_tarea_rechazo);
+
+                        modelBuilder.Entity<ETareasSeguimiento>().ToTable("T_Tareas_Seguimiento");
+                        modelBuilder.Entity<ETareasSeguimiento>().HasKey(d => d.CN_Id_seguimiento);
 
         }
     }
