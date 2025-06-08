@@ -47,6 +47,12 @@ namespace IntelTaskUCR.Infrastructure.Context
                         modelBuilder.Entity<ETareas>().ToTable("T_Tareas");
                         modelBuilder.Entity<ETareas>().HasKey(d => d.CN_Id_tarea);
 
+                        modelBuilder.Entity<ETareas>()
+                            .HasOne(d => d.TareaOrigen) // UNA tarea origen
+                            .WithMany(d => d.TareasHijas) //MUCHAS hijas que la apuntan como origen
+                            .HasForeignKey(d => d.CN_Tarea_origen) //Clave foranea
+                            .OnDelete(DeleteBehavior.Restrict);
+                        
                         modelBuilder.Entity<ERoles>().ToTable("T_Roles");
                         modelBuilder.Entity<ERoles>().HasKey(d => d.CN_Id_rol);
 
@@ -67,6 +73,12 @@ namespace IntelTaskUCR.Infrastructure.Context
                         
                         modelBuilder.Entity<ETareasIncumplimientos>().ToTable("T_Tareas_Incumplimientos");
                         modelBuilder.Entity<ETareasIncumplimientos>().HasKey(d => d.CN_Id_tarea_incumplimiento);
+                        
+                        modelBuilder.Entity<ETareasIncumplimientos>()
+                            .HasOne(d => d.Tareas)
+                            .WithMany(t => t.TareasIncumplimientos)
+                            .HasForeignKey(d => d.CN_Id_tarea)
+                            .OnDelete(DeleteBehavior.Restrict);
 
                         modelBuilder.Entity<ENotificaciones>().ToTable("T_Notificaciones");
                         modelBuilder.Entity<ENotificaciones>().HasKey(d => d.CN_Id_notificacion);

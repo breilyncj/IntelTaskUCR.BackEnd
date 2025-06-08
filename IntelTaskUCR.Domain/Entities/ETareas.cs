@@ -33,6 +33,15 @@ namespace IntelTaskUCR.Domain.Entities
 
         public int CN_Usuario_creador { get ; set; }     
 
-        public int CN_Usuario_asignado { get; set; } 
+        public int? CN_Usuario_asignado { get; set; } 
+        
+        // Propiedad de nevagacion a la tarea origen
+        
+        public ETareas? TareaOrigen { get; set; }
+        
+        // Propiedad de navegacion (uno a muchos)
+        
+        public ICollection<ETareas>? TareasHijas { get; set; }
+        public ICollection<ETareasIncumplimientos>? TareasIncumplimientos { get; set; }
     }
 }
