@@ -38,6 +38,8 @@ namespace IntelTaskUCR.Domain.Entities
         // Propiedad de nevagacion a la tarea origen
         
         public ETareas? TareaOrigen { get; set; }
+
+        public EEstados? Estados { get; set; }
         
         // Propiedad de navegacion (uno a muchos)
         

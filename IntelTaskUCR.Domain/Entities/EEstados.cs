@@ -17,5 +17,9 @@ namespace IntelTaskUCR.Domain.Entities
         public string CT_Estado { get; set; }
 
         public string CT_Descripcion {  get; set; } 
+
+        public ICollection<ETareas>? Tareas { get; set; } 
+
+    
     }
 }

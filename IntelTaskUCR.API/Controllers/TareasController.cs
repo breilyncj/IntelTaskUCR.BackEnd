@@ -172,8 +172,13 @@ namespace IntelTaskUCR.API.Controllers
                 CT_Comentario = seguimientos.CT_Comentario
             }).ToList() ?? new List<TareasSeguimientoDto>(),
 
-            
-            
+
+             Estados = t.Estados != null ? new EstadosDto()
+             {
+                 CN_Id_estado = t.CN_Id_estado
+             } : null,
+
+
             TareasJustificacionRechazo = t.TareasJustificacionRechazo?.Select(rechazo => new TareasJustificacionRechazoDto()
             {
                 CN_Id_tarea_rechazo = rechazo.CN_Id_tarea_rechazo,

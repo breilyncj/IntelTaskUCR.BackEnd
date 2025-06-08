@@ -50,7 +50,7 @@ namespace IntelTaskUCR.Infrastructure.Context
                         modelBuilder.Entity<ETareas>()
                             .HasOne(d => d.TareaOrigen) // UNA tarea origen
                             .WithMany(d => d.TareasHijas) //MUCHAS hijas que la apuntan como origen
-                            .HasForeignKey(d => d.CN_Tarea_origen) //Clave foranea
+                            .HasForeignKey(d => d.CN_Tarea_origen) //Clave foranea -- compljeidades estados  prioridades
                             .OnDelete(DeleteBehavior.Restrict);
                         
                         modelBuilder.Entity<ERoles>().ToTable("T_Roles");
@@ -73,6 +73,12 @@ namespace IntelTaskUCR.Infrastructure.Context
                         
                         modelBuilder.Entity<EEstados>().ToTable("T_Estados");
                         modelBuilder.Entity<EEstados>().HasKey(d => d.CN_Id_estado);
+
+                        modelBuilder.Entity<ETareas>()
+                            .HasOne(d => d.Estados)
+                            .WithMany(d => d.Tareas)
+                            .HasForeignKey(d => d.CN_Id_estado)
+                            .OnDelete(DeleteBehavior.Restrict);
 
                         modelBuilder.Entity<EPrioridades>().ToTable("T_Prioridades");
                         modelBuilder.Entity<EPrioridades>().HasKey(d => d.CN_Id_prioridad);

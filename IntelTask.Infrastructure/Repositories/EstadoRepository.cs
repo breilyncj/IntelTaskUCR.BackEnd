@@ -25,9 +25,23 @@ namespace IntelTaskUCR.Infrastructure.Repositories
             return await _context.T_Estados.ToListAsync();
         }
 
+        public async Task<IEnumerable<EEstados>> GetAllWithTareasAsync()
+        {
+            return await _context.T_Estados
+                .Include(i => i.Tareas)
+                .ToListAsync();
+        }
+
         public async Task<EEstados?> GetByIdAsync(byte id)
         {
             return await _context.T_Estados.FindAsync(id);
+        }
+
+        public async Task<EEstados?> GetByIdWithTareasAsync(byte id)
+        {
+            return await _context.T_Estados
+                .Include(i => i.Tareas)
+                .FirstOrDefaultAsync(i => i.CN_Id_estado == id);
         }
 
         //Guarda
