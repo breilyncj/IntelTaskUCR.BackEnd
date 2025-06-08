@@ -29,6 +29,7 @@ namespace IntelTaskUCR.Infrastructure.Repositories
             return await _context.T_Tareas
                 .Include(t => t.TareaOrigen)
                 .Include(t => t.TareasHijas)
+                .Include(t => t.Prioridades)
                 .Include(t => t.TareasIncumplimientos)
                 .Include(t => t.TareasSeguimiento)
                 .Include(t => t.TareasJustificacionRechazo)
@@ -45,6 +46,7 @@ namespace IntelTaskUCR.Infrastructure.Repositories
             return await _context.T_Tareas
                 .Include(t => t.TareaOrigen)
                 .Include(t => t.TareasHijas)
+                .Include(t => t.Prioridades)
                 .Include(t => t.TareasIncumplimientos)
                 .Include(t => t.TareasSeguimiento)
                 .Include(t => t.TareasJustificacionRechazo)

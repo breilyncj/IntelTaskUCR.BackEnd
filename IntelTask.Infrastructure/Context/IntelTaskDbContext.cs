@@ -53,6 +53,13 @@ namespace IntelTaskUCR.Infrastructure.Context
                             .HasForeignKey(d => d.CN_Tarea_origen) //Clave foranea
                             .OnDelete(DeleteBehavior.Restrict);
                         
+                        
+                        modelBuilder.Entity<ETareas>()
+                            .HasOne(t => t.Prioridades)
+                            .WithMany(t => t.Tareas)
+                            .HasForeignKey(t => t.CN_Id_prioridad)
+                            .OnDelete(DeleteBehavior.Restrict);
+                        
                         modelBuilder.Entity<ERoles>().ToTable("T_Roles");
                         modelBuilder.Entity<ERoles>().HasKey(d => d.CN_Id_rol);
 

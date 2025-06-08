@@ -10,8 +10,12 @@ namespace IntelTaskUCR.Domain.Interfaces
     public interface IPrioridadesRepository
     {
         Task<IEnumerable<EPrioridades>> GetAllAsync();
+        
+        Task<IEnumerable<EPrioridades>> GetAllWithTareasAsync();
 
         Task<EPrioridades?> GetByIdAsync(byte id);
+        
+        Task<EPrioridades?> GetByIdWithTareasAsync(byte id);
 
         Task AddAsync(EPrioridades prioridades);
 

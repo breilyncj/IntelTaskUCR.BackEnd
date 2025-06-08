@@ -145,14 +145,48 @@ namespace IntelTaskUCR.API.Controllers
 
             TareaOrigen = t.TareaOrigen != null ? new TareasDto()
             {
-                CN_Id_tarea = t.TareaOrigen.CN_Id_tarea
+                CN_Id_tarea = t.CN_Id_tarea,
+                CN_Tarea_origen = t.CN_Tarea_origen,
+                CT_Titulo_tarea = t.CT_Titulo_tarea,
+                CT_Descripcion_tarea = t.CT_Descripcion_tarea,
+                CT_Descripcion_espera = t.CT_Descripcion_espera,
+                CN_Id_complejidad = t.CN_Id_complejidad,
+                CN_Id_estado = t.CN_Id_estado,
+                CN_Id_prioridad = t.CN_Id_prioridad,
+                CN_Numero_GIS = t.CN_Numero_GIS,
+                CF_Fecha_asignacion = t.CF_Fecha_asignacion,
+                CF_Fecha_limite = t.CF_Fecha_limite,
+                CF_Fecha_finalizacion = t.CF_Fecha_finalizacion,
+                CN_Usuario_creador = t.CN_Usuario_creador,
+                CN_Usuario_asignado = t.CN_Usuario_asignado,
+                
             } : null,
+            
+            Prioridades = t.Prioridades != null ? new PrioridadesDTO()
+            {
+                CN_Id_prioridad = t.Prioridades.CN_Id_prioridad,
+                CT_Nombre_prioridad = t.Prioridades.CT_Nombre_prioridad,
+                CT_Descripcion_prioridad = t.Prioridades.CT_Descripcion_prioridad
+            } : null,
+            
+            
 
             TareasHijas = t.TareasHijas?.Select(hijas => new TareasDto
             {
                 CN_Id_tarea = hijas.CN_Id_tarea,
+                CN_Tarea_origen = hijas.CN_Tarea_origen,
                 CT_Titulo_tarea = hijas.CT_Titulo_tarea,
-                CT_Descripcion_tarea = hijas.CT_Descripcion_tarea
+                CT_Descripcion_tarea = hijas.CT_Descripcion_tarea,
+                CT_Descripcion_espera = hijas.CT_Descripcion_espera,
+                CN_Id_complejidad = hijas.CN_Id_complejidad,
+                CN_Id_estado = hijas.CN_Id_estado,
+                CN_Id_prioridad = hijas.CN_Id_prioridad,
+                CN_Numero_GIS = hijas.CN_Numero_GIS,
+                CF_Fecha_asignacion = hijas.CF_Fecha_asignacion,
+                CF_Fecha_limite = hijas.CF_Fecha_limite,
+                CF_Fecha_finalizacion = hijas.CF_Fecha_finalizacion,
+                CN_Usuario_creador = hijas.CN_Usuario_creador,
+                CN_Usuario_asignado = hijas.CN_Usuario_asignado,
             }).ToList(),
 
             TareasIncumplimientos = t.TareasIncumplimientos?.Select(incumplimientos => new TareaIncumplimientoDto()

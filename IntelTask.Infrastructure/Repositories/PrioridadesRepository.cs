@@ -25,10 +25,24 @@ namespace IntelTaskUCR.Infrastructure.Repositories
         {
             return await _context.T_Prioridades.ToListAsync();
         }
+        public async Task<IEnumerable<EPrioridades>> GetAllWithTareasAsync()
+        {
+            return await _context.T_Prioridades
+                .Include(t => t.Tareas)
+                .ToListAsync();
+        }
+
+
 
         public async Task<EPrioridades?> GetByIdAsync(byte id)
         {
             return await _context.T_Prioridades.FindAsync(id);
+        }
+        public async Task<EPrioridades?> GetByIdWithTareasAsync(byte id)
+        {
+            return await _context.T_Prioridades
+                .Include(t => t.Tareas)
+                .FirstOrDefaultAsync(t => t.CN_Id_prioridad == id);
         }
 
         //Guarda

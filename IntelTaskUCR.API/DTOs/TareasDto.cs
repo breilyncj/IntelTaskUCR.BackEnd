@@ -19,6 +19,8 @@
         
         public TareasDto? TareaOrigen { get; set; }
         
+        public PrioridadesDTO? Prioridades { get; set; }
+        
         public List<TareasDto>? TareasHijas { get; set; }
         
         public List<TareaIncumplimientoDto>? TareasIncumplimientos { get; set; }
