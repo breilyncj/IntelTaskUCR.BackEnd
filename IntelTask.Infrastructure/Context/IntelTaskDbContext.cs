@@ -25,6 +25,8 @@ namespace IntelTaskUCR.Infrastructure.Context
         public DbSet<EEstados> T_Estados { get ; set; } 
 
         public DbSet<EPrioridades> T_Prioridades { get; set; }
+
+        public DbSet<ENotificaciones> T_Notificaciones { get; set; } 
         
         public DbSet<ETareasIncumplimientos> T_Tareas_Incumplimientos { get; set; }
         
@@ -59,6 +61,9 @@ namespace IntelTaskUCR.Infrastructure.Context
                         
                         modelBuilder.Entity<ETareasIncumplimientos>().ToTable("T_Tareas_Incumplimientos");
                         modelBuilder.Entity<ETareasIncumplimientos>().HasKey(d => d.CN_Id_tarea_incumplimiento);
+
+                        modelBuilder.Entity<ENotificaciones>().ToTable("T_Notificaciones");
+                        modelBuilder.Entity<ENotificaciones>().HasKey(d => d.CN_Id_notificacion);
 
                 }
     }

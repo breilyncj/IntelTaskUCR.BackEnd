@@ -16,6 +16,7 @@ builder.Services.AddScoped<IComplejidadesRepository, ComplejidadesRepository>();
 builder.Services.AddScoped<IFrecuenciaRecordatorioRepository, FrecuenciaRecordatorioRepository>();
 builder.Services.AddScoped<IEstadosRepository, EstadoRepository>();
 builder.Services.AddScoped<IPrioridadesRepository, PrioridadesRepository>();
+builder.Services.AddScoped<INotificacionesRepository, NotificacionesRepository>();
 builder.Services.AddScoped<ITareasIncumplimientosRepository, TareasIncumplimientosRepository>();
 
 
