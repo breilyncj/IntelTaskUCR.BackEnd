@@ -5,34 +5,36 @@ namespace IntelTaskUCR.Infrastructure.Context
 {
     public class IntelTaskDbContext : DbContext
     {
-        public IntelTaskDbContext(DbContextOptions <IntelTaskDbContext> options) :  base(options) { 
+        public IntelTaskDbContext(DbContextOptions<IntelTaskDbContext> options) : base(options) {
         }
 
-        public DbSet<EDemo> T_Demo { get; set; } 
+        public DbSet<EDemo> T_Demo { get; set; }
 
         public DbSet<EUsuarios> T_Usuarios { get; set; }
 
-        public DbSet<ETareas> T_Tareas { get; set; } 
+        public DbSet<ETareas> T_Tareas { get; set; }
 
         public DbSet<ERoles> T_Roles { get; set; }
 
         public DbSet<EOficinas> T_Oficinas { get; set; }
 
-        public DbSet<EComplejidades> T_Complejidades   { get; set; } 
-        
+        public DbSet<EComplejidades> T_Complejidades { get; set; }
+
         public DbSet<EFrecuenciaRecordatorio> T_Frecuecia_Recordatorio { get; set; }
 
-        public DbSet<EEstados> T_Estados { get ; set; } 
+        public DbSet<EEstados> T_Estados { get; set; }
 
         public DbSet<EPrioridades> T_Prioridades { get; set; }
 
-        public DbSet<ENotificaciones> T_Notificaciones { get; set; } 
-        
+        public DbSet<ENotificaciones> T_Notificaciones { get; set; }
+
         public DbSet<ETareasIncumplimientos> T_Tareas_Incumplimientos { get; set; }
 
         public DbSet<ETareasJustificacionRechazo> T_Tareas_Justificacion_Rechazo { get; set; }
 
         public DbSet<ETareasSeguimiento> T_Tareas_Seguimiento { get; set; }
+
+        public DbSet<ENotificacionesXUsuarios> T_Notificaciones_X_Usuarios { get; set; } 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
                 {
@@ -74,6 +76,9 @@ namespace IntelTaskUCR.Infrastructure.Context
 
                         modelBuilder.Entity<ETareasSeguimiento>().ToTable("T_Tareas_Seguimiento");
                         modelBuilder.Entity<ETareasSeguimiento>().HasKey(d => d.CN_Id_seguimiento);
+
+                        modelBuilder.Entity<ENotificacionesXUsuarios>().ToTable("TI_Notificaciones_X_Usuarios");
+                        modelBuilder.Entity<ENotificacionesXUsuarios>().HasKey(d => d.CN_Id_notificacion);
 
         }
     }
