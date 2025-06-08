@@ -154,7 +154,15 @@ namespace IntelTaskUCR.API.Controllers
                 CT_Justificacion_incumplimiento = incumplimientos.CT_Justificacion_incumplimiento,
                 CF_Fecha_incumplimiento = incumplimientos.CF_Fecha_incumplimiento
                 
-            }).ToList() ?? new List<TareaIncumplimientoDto>()
+            }).ToList() ?? new List<TareaIncumplimientoDto>(),
+            
+            TareasJustificacionRechazo = t.TareasJustificacionRechazo?.Select(rechazo => new TareasJustificacionRechazoDto()
+            {
+                CN_Id_tarea_rechazo = rechazo.CN_Id_tarea_rechazo,
+                CN_Id_tarea = rechazo.CN_Id_tarea,
+                CT_Descripcion_rechazo = rechazo.CT_Descripcion_rechazo,
+                CF_Fecha_hora_rechazo = rechazo.CF_Fecha_hora_rechazo
+            }).ToList() ?? new List<TareasJustificacionRechazoDto>()
         };
 
         private ETareas MapToEntity(TareasDto dto) => new ETareas

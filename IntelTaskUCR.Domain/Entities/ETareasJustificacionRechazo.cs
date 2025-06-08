@@ -15,5 +15,7 @@ namespace IntelTaskUCR.Domain.Entities
         public string CT_Descripcion_rechazo { get; set; } 
 
         public int CN_Id_tarea_rechazo { get; set; } 
+        
+        public ETareas? Tareas { get; set; }
     }
 }

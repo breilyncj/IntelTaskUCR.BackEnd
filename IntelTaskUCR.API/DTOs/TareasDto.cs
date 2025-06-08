@@ -22,5 +22,7 @@
         public List<TareasDto>? TareasHijas { get; set; }
         
         public List<TareaIncumplimientoDto>? TareasIncumplimientos { get; set; }
+        
+        public List<TareasJustificacionRechazoDto>? TareasJustificacionRechazo { get; set; }
     }
 }

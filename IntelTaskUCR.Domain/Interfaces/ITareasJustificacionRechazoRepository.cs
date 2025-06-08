@@ -10,6 +10,10 @@ namespace IntelTaskUCR.Domain.Interfaces
     public interface ITareasJustificacionRechazoRepository
     {
         Task<IEnumerable<ETareasJustificacionRechazo>> GetAllAsync();
+        
+        Task<IEnumerable<ETareasJustificacionRechazo>> GetAllWithTareasAsync();
+        
+        Task<ETareasJustificacionRechazo?> GetByIdWithTareasAsync(int id);
 
         Task<ETareasJustificacionRechazo?> GetByIdAsync(int id);
 

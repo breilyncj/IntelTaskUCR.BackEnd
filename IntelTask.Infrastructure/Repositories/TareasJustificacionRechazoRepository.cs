@@ -22,6 +22,18 @@ namespace IntelTaskUCR.Infrastructure.Repositories
         {
             return await _context.T_Tareas_Justificacion_Rechazo.ToListAsync();
         }
+        public async Task<IEnumerable<ETareasJustificacionRechazo>> GetAllWithTareasAsync()
+        {
+            return await _context.T_Tareas_Justificacion_Rechazo
+                .Include(i => i.Tareas)
+                .ToListAsync();
+        }
+        public async Task<ETareasJustificacionRechazo?> GetByIdWithTareasAsync(int id)
+        {
+            return await _context.T_Tareas_Justificacion_Rechazo
+                .Include(i => i.Tareas)
+                .FirstOrDefaultAsync(i => i.CN_Id_tarea_rechazo == id);
+        }
         public async Task<ETareasJustificacionRechazo?> GetByIdAsync(int id)
         {
             return await _context.T_Tareas_Justificacion_Rechazo.FindAsync(id);

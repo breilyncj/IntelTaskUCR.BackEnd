@@ -36,6 +36,7 @@ namespace IntelTaskUCR.Infrastructure.Repositories
                 .Include(t => t.TareaOrigen)
                 .Include(t => t.TareasHijas)
                 .Include(t => t.TareasIncumplimientos)
+                .Include(t => t.TareasJustificacionRechazo)
                 .FirstOrDefaultAsync(t => t.CN_Id_tarea == id); 
         }
 

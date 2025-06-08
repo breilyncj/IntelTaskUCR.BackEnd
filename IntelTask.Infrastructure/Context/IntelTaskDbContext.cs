@@ -74,7 +74,7 @@ namespace IntelTaskUCR.Infrastructure.Context
                         
                         modelBuilder.Entity<ETareasIncumplimientos>()
                             .HasOne(d => d.Tareas)
-                            .WithMany(t => t.TareasIncumplimientos)
+                            .WithMany(d => d.TareasIncumplimientos)
                             .HasForeignKey(d => d.CN_Id_tarea)
                             .OnDelete(DeleteBehavior.Restrict);
 
@@ -84,6 +84,12 @@ namespace IntelTaskUCR.Infrastructure.Context
                         modelBuilder.Entity<ETareasJustificacionRechazo>().ToTable("T_Tareas_Justificacion_Rechazo");
                         modelBuilder.Entity<ETareasJustificacionRechazo>().HasKey(d => d.CN_Id_tarea_rechazo);
 
+                        modelBuilder.Entity<ETareasJustificacionRechazo>()
+                            .HasOne(d => d.Tareas)
+                            .WithMany(d => d.TareasJustificacionRechazo)
+                            .HasForeignKey(d => d.CN_Id_tarea)
+                            .OnDelete(DeleteBehavior.Restrict);
+                        
                         modelBuilder.Entity<ETareasSeguimiento>().ToTable("T_Tareas_Seguimiento");
                         modelBuilder.Entity<ETareasSeguimiento>().HasKey(d => d.CN_Id_seguimiento);
 
