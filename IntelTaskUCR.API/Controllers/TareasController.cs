@@ -42,10 +42,31 @@ namespace IntelTaskUCR.API.Controllers
             return tareas != null ? Ok(MapToDto(tareas)) : NotFound();
         }
         
-        [HttpGet("WithIncumplimientos/{id}")]
-        public async Task<IActionResult> GetWithIncumplimientos(int id)
+        // [HttpGet("WithIncumplimientos/{id}")]
+        // public async Task<IActionResult> GetWithIncumplimientos(int id)
+        // {
+        //     var tarea = await _repository.GetByIdWithIncumplimientoAsync(id);
+        //     return tarea != null ? Ok(MapToDto(tarea)) : NotFound();
+        // }
+        //
+        // [HttpGet("WithTareaOrigen/{id}")]
+        // public async Task<IActionResult> GetWithTareaOrigen(int id)
+        // {
+        //     var tarea = await _repository.GetByIdWithTareasOrigenAsync(id);
+        //     return tarea != null ? Ok(MapToDto(tarea)) : NotFound();
+        // }
+        //
+        // [HttpGet("WithTareasHijas/{id}")]
+        // public async Task<IActionResult> GetWithTareasHijas(int id)
+        // {
+        //     var tarea = await _repository.GetByIdWithTareasHijasAsync(id);
+        //     return tarea != null ? Ok(MapToDto(tarea)) : NotFound();
+        // }
+        
+        [HttpGet("WithRelaciones/{id}")]
+        public async Task<IActionResult> GetWithRelaciones(int id)
         {
-            var tarea = await _repository.GetByIdWithIncumplimientoAsync(id);
+            var tarea = await _repository.GetByIdWithRelacionesAsync(id);
             return tarea != null ? Ok(MapToDto(tarea)) : NotFound();
         }
 
@@ -113,6 +134,19 @@ namespace IntelTaskUCR.API.Controllers
             CF_Fecha_finalizacion = t.CF_Fecha_finalizacion,
             CN_Usuario_creador = t.CN_Usuario_creador,
             CN_Usuario_asignado = t.CN_Usuario_asignado,
+            
+            TareaOrigen = t.TareaOrigen != null ? new TareasDto()
+            {
+                CN_Id_tarea = t.TareaOrigen.CN_Id_tarea
+            } : null,
+            
+            TareasHijas = t.TareasHijas?.Select(hijas => new TareasDto
+            {
+                CN_Id_tarea = hijas.CN_Id_tarea,
+                CT_Titulo_tarea = hijas.CT_Titulo_tarea,
+                CT_Descripcion_tarea = hijas.CT_Descripcion_tarea
+            }).ToList(),
+            
             TareasIncumplimientos = t.TareasIncumplimientos?.Select(incumplimientos => new TareaIncumplimientoDto()
             {
                 CN_Id_tarea_incumplimiento = incumplimientos.CN_Id_tarea_incumplimiento,

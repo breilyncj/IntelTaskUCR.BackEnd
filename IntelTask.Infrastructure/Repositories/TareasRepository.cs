@@ -30,12 +30,34 @@ namespace IntelTaskUCR.Infrastructure.Repositories
             return await _context.T_Tareas.FindAsync(id);
         }
 
-        public async Task<ETareas?> GetByIdWithIncumplimientoAsync(int id)
+        public async Task<ETareas?> GetByIdWithRelacionesAsync(int id)
         {
             return await _context.T_Tareas
-                .Include(d => d.TareasIncumplimientos) // Trae la colección relacionada
-                .FirstOrDefaultAsync(d => d.CN_Id_tarea == id); // Filtra por el id
+                .Include(t => t.TareaOrigen)
+                .Include(t => t.TareasHijas)
+                .Include(t => t.TareasIncumplimientos)
+                .FirstOrDefaultAsync(t => t.CN_Id_tarea == id); 
         }
+
+        // public async Task<ETareas?> GetByIdWithTareasOrigenAsync(int id)
+        // {
+        //     return await _context.T_Tareas
+        //         .Include(d => d.TareaOrigen)
+        //         .FirstOrDefaultAsync(d => d.CN_Id_tarea == id); // Filtra por el id
+        // }
+        // public async Task<ETareas?> GetByIdWithTareasHijasAsync(int id)
+        // {
+        //     return await _context.T_Tareas
+        //         .Include(d => d.TareasHijas)
+        //         .FirstOrDefaultAsync(d => d.CN_Id_tarea == id); // Filtra por el id
+        // }
+        //
+        // public async Task<ETareas?> GetByIdWithIncumplimientoAsync(int id)
+        // {
+        //     return await _context.T_Tareas
+        //         .Include(d => d.TareasIncumplimientos) // Trae la colección relacionada
+        //         .FirstOrDefaultAsync(d => d.CN_Id_tarea == id); // Filtra por el id
+        // }
 
         //Guarda
         public async Task AddAsync(ETareas tareas)

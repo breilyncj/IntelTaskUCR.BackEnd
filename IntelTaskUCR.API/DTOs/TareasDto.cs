@@ -17,6 +17,10 @@
         public int CN_Usuario_creador { get; set; }
         public int? CN_Usuario_asignado { get; set; }
         
+        public TareasDto? TareaOrigen { get; set; }
+        
+        public List<TareasDto>? TareasHijas { get; set; }
+        
         public List<TareaIncumplimientoDto>? TareasIncumplimientos { get; set; }
     }
 }
