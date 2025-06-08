@@ -9,4 +9,7 @@ public class ETareasIncumplimientos
     public string CT_Justificacion_incumplimiento { get; set; }
     
     public DateTime CF_Fecha_incumplimiento { get; set; }
+    
+    public ETareas? Tareas { get; set; }
+    
 }

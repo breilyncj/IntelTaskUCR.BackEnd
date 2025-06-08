@@ -30,6 +30,13 @@ namespace IntelTaskUCR.Infrastructure.Repositories
             return await _context.T_Tareas.FindAsync(id);
         }
 
+        public async Task<ETareas?> GetByIdWithIncumplimientoAsync(int id)
+        {
+            return await _context.T_Tareas
+                .Include(d => d.TareasIncumplimientos) // Trae la colección relacionada
+                .FirstOrDefaultAsync(d => d.CN_Id_tarea == id); // Filtra por el id
+        }
+
         //Guarda
         public async Task AddAsync(ETareas tareas)
         {

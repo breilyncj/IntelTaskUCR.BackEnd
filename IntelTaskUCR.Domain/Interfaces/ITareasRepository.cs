@@ -12,6 +12,8 @@ namespace IntelTaskUCR.Domain.Interfaces
         Task<IEnumerable<ETareas>> GetAllAsync();
 
         Task<ETareas?> GetByIdAsync(int id);
+        
+        Task<ETareas?> GetByIdWithIncumplimientoAsync(int id);
 
         Task AddAsync(ETareas tarea);
 
