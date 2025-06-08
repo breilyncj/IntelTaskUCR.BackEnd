@@ -26,6 +26,8 @@ namespace IntelTaskUCR.Infrastructure.Context
 
         public DbSet<EPrioridades> T_Prioridades { get; set; }
         
+        public DbSet<ETareasIncumplimientos> T_Tareas_Incumplimientos { get; set; }
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
                 {
                         modelBuilder.Entity<EDemo>().ToTable("T_Demo");
@@ -54,6 +56,9 @@ namespace IntelTaskUCR.Infrastructure.Context
 
                         modelBuilder.Entity<EPrioridades>().ToTable("T_Prioridades");
                         modelBuilder.Entity<EPrioridades>().HasKey(d => d.CN_Id_prioridad);
+                        
+                        modelBuilder.Entity<ETareasIncumplimientos>().ToTable("T_Tareas_Incumplimientos");
+                        modelBuilder.Entity<ETareasIncumplimientos>().HasKey(d => d.CN_Id_tarea_incumplimiento);
 
                 }
     }
