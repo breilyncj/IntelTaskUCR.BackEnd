@@ -142,27 +142,37 @@ namespace IntelTaskUCR.API.Controllers
             CF_Fecha_finalizacion = t.CF_Fecha_finalizacion,
             CN_Usuario_creador = t.CN_Usuario_creador,
             CN_Usuario_asignado = t.CN_Usuario_asignado,
-            
+
             TareaOrigen = t.TareaOrigen != null ? new TareasDto()
             {
                 CN_Id_tarea = t.TareaOrigen.CN_Id_tarea
             } : null,
-            
+
             TareasHijas = t.TareasHijas?.Select(hijas => new TareasDto
             {
                 CN_Id_tarea = hijas.CN_Id_tarea,
                 CT_Titulo_tarea = hijas.CT_Titulo_tarea,
                 CT_Descripcion_tarea = hijas.CT_Descripcion_tarea
             }).ToList(),
-            
+
             TareasIncumplimientos = t.TareasIncumplimientos?.Select(incumplimientos => new TareaIncumplimientoDto()
             {
                 CN_Id_tarea_incumplimiento = incumplimientos.CN_Id_tarea_incumplimiento,
                 CN_Id_tarea = incumplimientos.CN_Id_tarea,
                 CT_Justificacion_incumplimiento = incumplimientos.CT_Justificacion_incumplimiento,
                 CF_Fecha_incumplimiento = incumplimientos.CF_Fecha_incumplimiento
-                
+
             }).ToList() ?? new List<TareaIncumplimientoDto>(),
+
+            TareasSeguimiento = t.TareasSeguimiento?.Select(seguimientos => new TareasSeguimientoDto()
+            {
+                CN_Id_seguimiento = seguimientos.CN_Id_seguimiento,
+                CN_Id_tarea = seguimientos.CN_Id_tarea,
+                CF_Fecha_seguimiento = seguimientos.CF_Fecha_seguimiento,
+                CT_Comentario = seguimientos.CT_Comentario
+            }).ToList() ?? new List<TareasSeguimientoDto>(),
+
+            
             
             TareasJustificacionRechazo = t.TareasJustificacionRechazo?.Select(rechazo => new TareasJustificacionRechazoDto()
             {

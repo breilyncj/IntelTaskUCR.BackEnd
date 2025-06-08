@@ -101,6 +101,13 @@ namespace IntelTaskUCR.Infrastructure.Context
                         modelBuilder.Entity<ETareasSeguimiento>().ToTable("T_Tareas_Seguimiento");
                         modelBuilder.Entity<ETareasSeguimiento>().HasKey(d => d.CN_Id_seguimiento);
 
+                        modelBuilder.Entity<ETareasSeguimiento>()
+                            .HasOne( d => d.Tareas)
+                            .WithMany(t => t.TareasSeguimiento)
+                            .HasForeignKey(d => d.CN_Id_tarea)
+                            .OnDelete(DeleteBehavior.Restrict);
+                       
+
                         modelBuilder.Entity<ENotificacionesXUsuarios>().ToTable("TI_Notificaciones_X_Usuarios");
                         modelBuilder.Entity<ENotificacionesXUsuarios>().HasKey(d => d.CN_Id_notificacion);
 

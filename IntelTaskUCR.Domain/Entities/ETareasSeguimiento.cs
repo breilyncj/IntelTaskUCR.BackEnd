@@ -14,7 +14,9 @@ namespace IntelTaskUCR.Domain.Entities
 
         public string CT_Comentario { get; set; } 
 
-        public DateTime CF_Fecha_seguimiento { get; set; } 
+        public DateTime CF_Fecha_seguimiento { get; set; }
+
+        public ETareas? Tareas { get; set; }
 
     }
 }

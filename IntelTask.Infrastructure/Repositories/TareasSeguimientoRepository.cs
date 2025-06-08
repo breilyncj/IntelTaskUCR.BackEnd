@@ -23,10 +23,26 @@ namespace IntelTaskUCR.Infrastructure.Repositories
         {
             return await _context.T_Tareas_Seguimiento.ToArrayAsync();
         }
+
+        public async Task<IEnumerable<ETareasSeguimiento>> GetAllWithTareasAsync()
+        {
+            return await _context.T_Tareas_Seguimiento
+                .Include(i => i.Tareas)
+                .ToListAsync();
+        }
+
         public async Task<ETareasSeguimiento?> GetByIdAsync(int id)
         {
             return await _context.T_Tareas_Seguimiento.FindAsync(id);
         }
+
+        public async Task<ETareasSeguimiento?> GetByIdWithTareasAsync(int id)
+        {
+            return await _context.T_Tareas_Seguimiento
+                .Include(i => i.Tareas)
+                .FirstOrDefaultAsync(i => i.CN_Id_seguimiento == id);
+        }
+
         public async Task AddAsync(ETareasSeguimiento tareaSeguimiento)
         {
             await _context.T_Tareas_Seguimiento.AddAsync(tareaSeguimiento);
@@ -47,6 +63,5 @@ namespace IntelTaskUCR.Infrastructure.Repositories
                 await _context.SaveChangesAsync();
             }
         }
-
     }
 }

@@ -11,7 +11,11 @@ namespace IntelTaskUCR.Domain.Interfaces
     {
         Task<IEnumerable<ETareasSeguimiento>> GetAllAsync();
 
+        Task<IEnumerable<ETareasSeguimiento>> GetAllWithTareasAsync();
+
         Task<ETareasSeguimiento?> GetByIdAsync(int id);
+
+        Task<ETareasSeguimiento?> GetByIdWithTareasAsync(int id);
 
         Task AddAsync(ETareasSeguimiento tarea);
 
