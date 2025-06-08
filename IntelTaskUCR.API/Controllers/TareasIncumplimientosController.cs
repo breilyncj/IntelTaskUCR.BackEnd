@@ -17,13 +17,6 @@ namespace IntelTaskUCR.API.Controllers
             _repository = repository;
         }
         
-        // [HttpGet]
-        // public async Task<IActionResult> GetAll()
-        // {
-        //     var items = await _repository.GetAllAsync();
-        //     return Ok(items);
-        // }
-        
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {

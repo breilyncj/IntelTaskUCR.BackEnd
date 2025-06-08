@@ -18,6 +18,8 @@
         public int? CN_Usuario_asignado { get; set; }
         
         public TareasDto? TareaOrigen { get; set; }
+
+        public EstadosDto? Estados { get; set; }
         
         public PrioridadesDTO? Prioridades { get; set; }
         
@@ -28,5 +30,7 @@
         public List<TareasJustificacionRechazoDto>? TareasJustificacionRechazo { get; set; }
 
         public List<TareasSeguimientoDto>? TareasSeguimiento { get; set; }
+
+
     }
 }

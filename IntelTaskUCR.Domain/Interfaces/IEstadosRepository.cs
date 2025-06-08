@@ -11,6 +11,10 @@ namespace IntelTaskUCR.Domain.Interfaces
     {
         Task<IEnumerable<EEstados>> GetAllAsync();
 
+        Task<IEnumerable<EEstados>> GetAllWithTareasAsync();
+
+        Task<EEstados?> GetByIdWithTareasAsync(byte id);
+
         Task<EEstados?> GetByIdAsync(byte id);
 
         Task AddAsync(EEstados estado);
