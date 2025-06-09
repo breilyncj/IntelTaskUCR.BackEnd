@@ -22,6 +22,19 @@ builder.Services.AddScoped<ITareasJustificacionRechazoRepository, TareasJustific
 builder.Services.AddScoped<ITareasSeguimientoRepository, TareasSeguimientoRepository>();
 builder.Services.AddScoped<INotificacionesXUsuariosRepository, NotificacionesXUsuariosRepository>();
 
+// Add Cors
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularFrontEnd",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:4200")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
+
 
 // Add services to the container.
 
@@ -31,6 +44,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.UseCors("AllowAngularFrontEnd");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
