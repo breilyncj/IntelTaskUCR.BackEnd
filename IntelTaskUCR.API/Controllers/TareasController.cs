@@ -191,7 +191,7 @@ namespace IntelTaskUCR.API.Controllers
                 CF_Fecha_finalizacion = hijas.CF_Fecha_finalizacion,
                 CN_Usuario_creador = hijas.CN_Usuario_creador,
                 CN_Usuario_asignado = hijas.CN_Usuario_asignado,
-            }).ToList(),
+            }).ToList() ?? new List<TareasDto>(),
 
             TareasIncumplimientos = t.TareasIncumplimientos?.Select(incumplimientos => new TareaIncumplimientoDto()
             {
@@ -213,7 +213,9 @@ namespace IntelTaskUCR.API.Controllers
 
              Estados = t.Estados != null ? new EstadosDto()
              {
-                 CN_Id_estado = t.CN_Id_estado
+                 CN_Id_estado = t.Estados.CN_Id_estado,
+                 CT_Estado = t.Estados.CT_Estado,
+                 CT_Descripcion = t.Estados.CT_Descripcion,
              } : null,
 
 

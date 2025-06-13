@@ -10,8 +10,8 @@ namespace IntelTaskUCR.Domain.Entities
 {
     public class EEstados
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        // [Key]
+        // [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public byte CN_Id_estado { get; set; }
 
         public string CT_Estado { get; set; }
