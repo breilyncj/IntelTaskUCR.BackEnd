@@ -31,6 +31,9 @@ namespace IntelTaskUCR.Domain.Entities
         // Propiedad de navegacion (uno a muchos)
         
         public ICollection<EFrecuenciaRecordatorio>? FrecuenciaRecordatorios { get; set; }
+        public ICollection<ETareas>? TareasUsuarioAsignado { get; set; }
+
+        public ICollection<ETareas>? TareasUsuarioCreador {  get; set; }
 
     }
 }

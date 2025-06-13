@@ -31,6 +31,8 @@ namespace IntelTaskUCR.Infrastructure.Repositories
                 .Include(t => t.TareasHijas)
                 .Include(t => t.Prioridades)
                 .Include(t => t.Complejidades)
+                .Include(t => t.UsuarioAsignado)//s
+                .Include(t => t.UsuarioCreador)//s
                 .Include(t => t.TareasIncumplimientos)
                 .Include(t => t.TareasSeguimiento)
                 .Include(t => t.TareasJustificacionRechazo)
@@ -50,6 +52,8 @@ namespace IntelTaskUCR.Infrastructure.Repositories
                 .Include(t => t.TareasHijas)
                 .Include(t => t.Prioridades)
                 .Include(t => t.Complejidades)
+                .Include(t => t.UsuarioAsignado)
+                .Include(t => t.UsuarioCreador)
                 .Include(t => t.TareasIncumplimientos)
                 .Include(t => t.TareasSeguimiento)
                 .Include(t => t.TareasJustificacionRechazo)

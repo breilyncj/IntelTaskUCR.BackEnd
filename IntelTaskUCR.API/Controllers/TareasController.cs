@@ -13,12 +13,6 @@ namespace IntelTaskUCR.API.Controllers
         private readonly ITareasRepository _repository;
         public TareasController(ITareasRepository repository) { _repository = repository; }
 
-        // [HttpGet]
-        // public async Task<IActionResult> GetAll()
-        // {
-        //     var items = await _repository.GetAllAsync();
-        //     return Ok(items);
-        // }
         
         [HttpGet]
         public async Task<IActionResult> GetAll()
@@ -36,12 +30,6 @@ namespace IntelTaskUCR.API.Controllers
             return Ok(dtoList);
         }
 
-        // [HttpGet("{id}")]
-        // public async Task<IActionResult> Get(int id)
-        // {
-        //     var item = await _repository.GetByIdAsync(id);
-        //     return item != null ? Ok(item) : NotFound();
-        // }
         
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
@@ -50,26 +38,6 @@ namespace IntelTaskUCR.API.Controllers
             return tareas != null ? Ok(MapToDto(tareas)) : NotFound();
         }
         
-        // [HttpGet("WithIncumplimientos/{id}")]
-        // public async Task<IActionResult> GetWithIncumplimientos(int id)
-        // {
-        //     var tarea = await _repository.GetByIdWithIncumplimientoAsync(id);
-        //     return tarea != null ? Ok(MapToDto(tarea)) : NotFound();
-        // }
-        //
-        // [HttpGet("WithTareaOrigen/{id}")]
-        // public async Task<IActionResult> GetWithTareaOrigen(int id)
-        // {
-        //     var tarea = await _repository.GetByIdWithTareasOrigenAsync(id);
-        //     return tarea != null ? Ok(MapToDto(tarea)) : NotFound();
-        // }
-        //
-        // [HttpGet("WithTareasHijas/{id}")]
-        // public async Task<IActionResult> GetWithTareasHijas(int id)
-        // {
-        //     var tarea = await _repository.GetByIdWithTareasHijasAsync(id);
-        //     return tarea != null ? Ok(MapToDto(tarea)) : NotFound();
-        // }
         
         [HttpGet("WithRelaciones/{id}")]
         public async Task<IActionResult> GetWithRelaciones(int id)
@@ -78,12 +46,6 @@ namespace IntelTaskUCR.API.Controllers
             return tarea != null ? Ok(MapToDto(tarea)) : NotFound();
         }
 
-        // [HttpPost]
-        // public async Task<IActionResult> Create([FromBody] ETareas entity)
-        // {
-        //     await _repository.AddAsync(entity);
-        //     return CreatedAtAction(nameof(Get), new { id = entity.CN_Id_tarea }, entity);
-        // }
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] TareasDto dto)
@@ -168,7 +130,34 @@ namespace IntelTaskUCR.API.Controllers
                 CT_Nombre_prioridad = t.Prioridades.CT_Nombre_prioridad,
                 CT_Descripcion_prioridad = t.Prioridades.CT_Descripcion_prioridad
             } : null,
-            
+
+            UsuarioAsignado = t.UsuarioAsignado != null ? new UsuariosDto()
+            {
+                CN_Id_usuario = t.UsuarioAsignado.CN_Id_usuario,
+                CT_Nombre_usuario = t.UsuarioAsignado.CT_Nombre_usuario,
+                CT_Correo_usuario = t.UsuarioAsignado.CT_Correo_usuario,
+                CF_Fecha_nacimiento = t.UsuarioAsignado.CF_Fecha_nacimiento,
+                CT_Contrasenna = t.UsuarioAsignado.CT_Contrasenna,
+                CB_Estado_usuario = t.UsuarioAsignado.CB_Estado_usuario,
+                CF_Fecha_creacion_usuario = t.UsuarioAsignado.CF_Fecha_creacion_usuario,
+                CF_Fecha_modificacion_usuario = t.UsuarioAsignado.CF_Fecha_modificacion_usuario,
+                CN_Id_rol = t.UsuarioAsignado.CN_Id_rol
+            } : null,
+
+            UsuarioCreador = t.UsuarioCreador != null ? new UsuariosDto()
+            {
+                CN_Id_usuario = t.UsuarioCreador.CN_Id_usuario,
+                CT_Nombre_usuario = t.UsuarioCreador.CT_Nombre_usuario,
+                CT_Correo_usuario = t.UsuarioCreador.CT_Correo_usuario,
+                CF_Fecha_nacimiento = t.UsuarioCreador.CF_Fecha_nacimiento,
+                CT_Contrasenna = t.UsuarioCreador.CT_Contrasenna,
+                CB_Estado_usuario = t.UsuarioCreador.CB_Estado_usuario,
+                CF_Fecha_creacion_usuario = t.UsuarioCreador.CF_Fecha_creacion_usuario,
+                CF_Fecha_modificacion_usuario = t.UsuarioCreador.CF_Fecha_modificacion_usuario,
+                CN_Id_rol = t.UsuarioCreador.CN_Id_rol
+            } : null,
+
+
             Complejidades = t.Complejidades != null ? new ComplejidadesDto()
             {
                 CN_Id_complejidad = t.Complejidades.CN_Id_complejidad,

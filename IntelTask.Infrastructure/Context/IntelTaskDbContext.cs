@@ -64,8 +64,20 @@ namespace IntelTaskUCR.Infrastructure.Context
                             .WithMany(t => t.Tareas)
                             .HasForeignKey(t => t.CN_Id_prioridad)
                             .OnDelete(DeleteBehavior.Restrict);
-                        
-                        modelBuilder.Entity<ERoles>().ToTable("T_Roles");
+
+                        modelBuilder.Entity<ETareas>()
+                            .HasOne(t => t.UsuarioAsignado)
+                            .WithMany(t => t.TareasUsuarioAsignado)
+                            .HasForeignKey(t => t.CN_Usuario_asignado)
+                            .OnDelete(DeleteBehavior.Restrict);
+
+                        modelBuilder.Entity<ETareas>()
+                                        .HasOne(t => t.UsuarioCreador)
+                                        .WithMany(t => t.TareasUsuarioCreador)
+                                        .HasForeignKey(t => t.CN_Usuario_creador)
+                                        .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<ERoles>().ToTable("T_Roles");
                         modelBuilder.Entity<ERoles>().HasKey(d => d.CN_Id_rol);
 
                         modelBuilder.Entity<EOficinas>().ToTable("T_Oficinas");

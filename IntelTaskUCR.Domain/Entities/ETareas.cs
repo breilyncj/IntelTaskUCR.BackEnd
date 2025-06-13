@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace IntelTaskUCR.Domain.Entities
 {
@@ -44,14 +46,22 @@ namespace IntelTaskUCR.Domain.Entities
         public EPrioridades? Prioridades { get; set; }
         
         public EComplejidades? Complejidades { get; set; }
-        
+
+        public EUsuarios? UsuarioAsignado { get; set; }
+
+        public EUsuarios? UsuarioCreador  {get; set; }
+
         // Propiedad de navegacion (uno a muchos)
-        
+
         public ICollection<ETareas>? TareasHijas { get; set; }
         public ICollection<ETareasIncumplimientos>? TareasIncumplimientos { get; set; }
         
         public ICollection<ETareasJustificacionRechazo>? TareasJustificacionRechazo { get; set; }
 
         public ICollection<ETareasSeguimiento>? TareasSeguimiento { get; set; }
+
+
+
+
     }
 }

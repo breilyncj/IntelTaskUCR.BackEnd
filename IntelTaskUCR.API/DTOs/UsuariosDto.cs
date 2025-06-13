@@ -21,5 +21,7 @@
         public int CN_Id_rol { get; set; } 
         
         public List<FrecuenciaRecordatorioDto>? FrecuenciaRecordatorios { get; set; }
+
+        public List<TareasDto>? Tareas { get; set; }
     }
 }

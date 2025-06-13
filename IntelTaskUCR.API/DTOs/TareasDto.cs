@@ -24,14 +24,21 @@
         public PrioridadesDTO? Prioridades { get; set; }
         
         public ComplejidadesDto? Complejidades { get; set; }
-        
+
+        public UsuariosDto? UsuarioAsignado { get; set; }
+
+        public UsuariosDto? UsuarioCreador { get; set; }
+
         public List<TareasDto>? TareasHijas { get; set; }
+
         
         public List<TareaIncumplimientoDto>? TareasIncumplimientos { get; set; }
         
         public List<TareasJustificacionRechazoDto>? TareasJustificacionRechazo { get; set; }
 
         public List<TareasSeguimientoDto>? TareasSeguimiento { get; set; }
+
+
 
 
     }
