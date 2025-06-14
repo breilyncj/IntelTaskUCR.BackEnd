@@ -55,6 +55,13 @@ namespace IntelTaskUCR.API.Controllers
             var usuario = await _repository.GetByIdWithFrecuenciaRecordatorioAsync(id);
             return usuario != null ? Ok(MapToDto(usuario)) : NotFound();
         }
+        
+        [HttpGet("WithTareasAsignadas/{id}")]
+        public async Task<IActionResult> GetWithTareasAsignadas(int id)
+        {
+            var usuario = await _repository.GetByIdWithTareasAsignadasAsync(id);
+            return usuario != null ? Ok(MapToDto(usuario)) : NotFound();
+        }
 
         // [HttpPost]
         // public async Task<IActionResult> Create([FromBody] EUsuarios entity)
@@ -139,6 +146,26 @@ namespace IntelTaskUCR.API.Controllers
             CF_Fecha_nacimiento = u.CF_Fecha_nacimiento,
             CF_Fecha_modificacion_usuario = u.CF_Fecha_modificacion_usuario,
             CB_Estado_usuario = u.CB_Estado_usuario,
+            
+            TareasUsuarioAsignado = u.TareasUsuarioAsignado?.Select(tareasAsignadas => new TareasDto()
+            {
+                CN_Id_tarea = tareasAsignadas.CN_Id_tarea,
+                CN_Tarea_origen = tareasAsignadas.CN_Tarea_origen,
+                CT_Titulo_tarea = tareasAsignadas.CT_Titulo_tarea,
+                CT_Descripcion_tarea = tareasAsignadas.CT_Descripcion_tarea,
+                CT_Descripcion_espera = tareasAsignadas.CT_Descripcion_espera,
+                CN_Id_complejidad = tareasAsignadas.CN_Id_complejidad,
+                CN_Id_estado = tareasAsignadas.CN_Id_estado,
+                CN_Id_prioridad = tareasAsignadas.CN_Id_prioridad,
+                CN_Numero_GIS = tareasAsignadas.CN_Numero_GIS,
+                CF_Fecha_asignacion = tareasAsignadas.CF_Fecha_asignacion,
+                CF_Fecha_limite = tareasAsignadas.CF_Fecha_limite,
+                CF_Fecha_finalizacion = tareasAsignadas.CF_Fecha_finalizacion,
+                CN_Usuario_creador = tareasAsignadas.CN_Usuario_creador,
+                CN_Usuario_asignado = tareasAsignadas.CN_Usuario_asignado,
+                
+            }).ToList() ?? new List<TareasDto>(),
+            
             FrecuenciaRecordatorios = u.FrecuenciaRecordatorios?.Select(frecuencias => new FrecuenciaRecordatorioDto()
             {
                 CN_Id_recordatorio = frecuencias.CN_Id_recordatorio,
@@ -152,6 +179,9 @@ namespace IntelTaskUCR.API.Controllers
                 CT_Texto_recordatorio = frecuencias.CT_Texto_recordatorio
                 
             }).ToList() ?? new List<FrecuenciaRecordatorioDto>()
+            
+            
+            
         };
 
         private EUsuarios MapToEntity(UsuariosDto dto) => new EUsuarios

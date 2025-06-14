@@ -28,6 +28,7 @@ namespace IntelTaskUCR.Infrastructure.Repositories
         {
             return await _context.T_Usuarios
                 .Include(u => u.FrecuenciaRecordatorios)
+                .Include(u => u.TareasUsuarioAsignado)
                 .ToListAsync();
         }
 
@@ -40,6 +41,19 @@ namespace IntelTaskUCR.Infrastructure.Repositories
             return await _context.T_Usuarios
                 .Include(t => t.FrecuenciaRecordatorios)
                 .FirstOrDefaultAsync(t => t.CN_Id_usuario == id);
+        }
+        
+        public async Task<EUsuarios?> GetByIdWithTareasAsignadasAsync(int id)
+        {
+            return await _context.T_Usuarios
+                .Include(t => t.TareasUsuarioAsignado)
+                .FirstOrDefaultAsync(t => t.CN_Id_usuario == id);
+        }
+        
+        public async Task<EUsuarios?> GetByCorreo(string correo)
+        {
+            return await _context.T_Usuarios
+                .SingleOrDefaultAsync(u => u.CT_Correo_usuario.Equals(correo));
         }
 
 

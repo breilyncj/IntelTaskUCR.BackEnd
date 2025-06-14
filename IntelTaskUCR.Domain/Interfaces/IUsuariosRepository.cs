@@ -12,10 +12,14 @@ namespace IntelTaskUCR.Domain.Interfaces
         Task<IEnumerable<EUsuarios>> GetAllAsync();
         
         Task<IEnumerable<EUsuarios>> GetAllWithRelacionesAsync();
+        
+        Task<EUsuarios?> GetByIdWithTareasAsignadasAsync(int id);
 
         Task<EUsuarios?> GetByIdAsync(int id);
         
         Task<EUsuarios?> GetByIdWithFrecuenciaRecordatorioAsync(int id);
+        
+        Task<EUsuarios?> GetByCorreo(string correo);
 
         Task AddAsync(EUsuarios usuarios);
 
