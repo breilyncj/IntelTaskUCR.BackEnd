@@ -13,11 +13,11 @@ namespace IntelTaskUCR.Domain.Entities
         public int CN_Id_tarea  {  get; set; }
         public int? CN_Tarea_origen { get; set; } 
 
-        public string CT_Titulo_tarea { get; set; } 
+        public string? CT_Titulo_tarea { get; set; } 
 
         public string CT_Descripcion_tarea { get; set; } 
 
-        public string CT_Descripcion_espera { get; set; }
+        public string? CT_Descripcion_espera { get; set; }
 
         public byte CN_Id_complejidad { get; set; } 
 
@@ -25,7 +25,7 @@ namespace IntelTaskUCR.Domain.Entities
 
         public byte CN_Id_prioridad { get; set; } 
 
-        public string CN_Numero_GIS { get; set; } 
+        public string? CN_Numero_GIS { get; set; } 
 
         public DateTime CF_Fecha_asignacion { get; set; } 
 
