@@ -45,6 +45,22 @@ namespace IntelTaskUCR.API.Controllers
             var tarea = await _repository.GetByIdWithRelacionesAsync(id);
             return tarea != null ? Ok(MapToDto(tarea)) : NotFound();
         }
+        
+        [HttpGet("ByUsuarioCreador/{id}")]
+        public async Task<IActionResult> GetByIdWithUsuarioCreadorAsync(int id)
+        {
+            var tareas = await _repository.GetAllByIdUsuarioCreadorAsync(id);
+            var dtoList = tareas.Select(MapToDto);
+            return Ok(dtoList);
+        }
+        
+        [HttpGet("ByUsuarioAsignado/{id}")]
+        public async Task<IActionResult> GetByIdWithUsuarioAsignadoAsync(int id)
+        {
+            var tareas = await _repository.GetAllByIdUsuarioAsignadoAsync(id);
+            var dtoList = tareas.Select(MapToDto);
+            return Ok(dtoList);
+        }
 
 
         [HttpPost]
@@ -107,20 +123,20 @@ namespace IntelTaskUCR.API.Controllers
 
             TareaOrigen = t.TareaOrigen != null ? new TareasDto()
             {
-                CN_Id_tarea = t.CN_Id_tarea,
-                CN_Tarea_origen = t.CN_Tarea_origen,
-                CT_Titulo_tarea = t.CT_Titulo_tarea,
-                CT_Descripcion_tarea = t.CT_Descripcion_tarea,
-                CT_Descripcion_espera = t.CT_Descripcion_espera,
-                CN_Id_complejidad = t.CN_Id_complejidad,
-                CN_Id_estado = t.CN_Id_estado,
-                CN_Id_prioridad = t.CN_Id_prioridad,
-                CN_Numero_GIS = t.CN_Numero_GIS,
-                CF_Fecha_asignacion = t.CF_Fecha_asignacion,
-                CF_Fecha_limite = t.CF_Fecha_limite,
-                CF_Fecha_finalizacion = t.CF_Fecha_finalizacion,
-                CN_Usuario_creador = t.CN_Usuario_creador,
-                CN_Usuario_asignado = t.CN_Usuario_asignado,
+                CN_Id_tarea = t.TareaOrigen.CN_Id_tarea,
+                CN_Tarea_origen = t.TareaOrigen.CN_Tarea_origen,
+                CT_Titulo_tarea = t.TareaOrigen.CT_Titulo_tarea,
+                CT_Descripcion_tarea = t.TareaOrigen.CT_Descripcion_tarea,
+                CT_Descripcion_espera = t.TareaOrigen.CT_Descripcion_espera,
+                CN_Id_complejidad = t.TareaOrigen.CN_Id_complejidad,
+                CN_Id_estado = t.TareaOrigen.CN_Id_estado,
+                CN_Id_prioridad = t.TareaOrigen.CN_Id_prioridad,
+                CN_Numero_GIS =t.TareaOrigen.CN_Numero_GIS,
+                CF_Fecha_asignacion = t.TareaOrigen.CF_Fecha_asignacion,
+                CF_Fecha_limite = t.TareaOrigen.CF_Fecha_limite,
+                CF_Fecha_finalizacion = t.TareaOrigen.CF_Fecha_finalizacion,
+                CN_Usuario_creador = t.TareaOrigen.CN_Usuario_creador,
+                CN_Usuario_asignado = t.TareaOrigen.CN_Usuario_asignado,
                 
             } : null,
             

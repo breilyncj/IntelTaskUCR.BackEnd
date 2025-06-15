@@ -173,7 +173,7 @@ namespace IntelTaskUCR.API.Controllers
                 
             }).ToList() ?? new List<TareasDto>(),
             
-            TareasUsuarioCreado  = u.TareasUsuarioCreador?.Select(tareasCreadas => new TareasDto()
+            TareasUsuarioCreador  = u.TareasUsuarioCreador?.Select(tareasCreadas => new TareasDto()
             {
                 CN_Id_tarea = tareasCreadas.CN_Id_tarea,
                 CN_Tarea_origen = tareasCreadas.CN_Tarea_origen,
@@ -191,6 +191,8 @@ namespace IntelTaskUCR.API.Controllers
                 CN_Usuario_asignado = tareasCreadas.CN_Usuario_asignado,
                 
             }).ToList() ?? new List<TareasDto>(),
+            
+            
             
             
             FrecuenciaRecordatorios = u.FrecuenciaRecordatorios?.Select(frecuencias => new FrecuenciaRecordatorioDto()

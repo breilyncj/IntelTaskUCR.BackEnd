@@ -44,6 +44,39 @@ namespace IntelTaskUCR.Infrastructure.Repositories
         {
             return await _context.T_Tareas.FindAsync(id);
         }
+        public async Task<IEnumerable<ETareas>> GetAllByIdUsuarioCreadorAsync(int id)
+        {
+            return await _context.T_Tareas
+                .Include(t => t.TareaOrigen)
+                .Include(t => t.TareasHijas)
+                .Include(t => t.Prioridades)
+                .Include(t => t.Complejidades)
+                .Include(t => t.UsuarioAsignado)//s
+                .Include(t => t.UsuarioCreador)//s
+                .Include(t => t.TareasIncumplimientos)
+                .Include(t => t.TareasSeguimiento)
+                .Include(t => t.TareasJustificacionRechazo)
+                .Include( t => t.Estados)
+                .Where(t => t.UsuarioCreador != null && t.UsuarioCreador.CN_Id_usuario == id)
+                .ToListAsync();
+        }
+        
+        public async Task<IEnumerable<ETareas>> GetAllByIdUsuarioAsignadoAsync(int id)
+        {
+            return await _context.T_Tareas
+                .Include(t => t.TareaOrigen)
+                .Include(t => t.TareasHijas)
+                .Include(t => t.Prioridades)
+                .Include(t => t.Complejidades)
+                .Include(t => t.UsuarioAsignado)//s
+                .Include(t => t.UsuarioCreador)//s
+                .Include(t => t.TareasIncumplimientos)
+                .Include(t => t.TareasSeguimiento)
+                .Include(t => t.TareasJustificacionRechazo)
+                .Include( t => t.Estados)
+                .Where(t => t.UsuarioAsignado != null && t.UsuarioAsignado.CN_Id_usuario == id)
+                .ToListAsync();
+        }
 
         public async Task<ETareas?> GetByIdWithRelacionesAsync(int id)
         {

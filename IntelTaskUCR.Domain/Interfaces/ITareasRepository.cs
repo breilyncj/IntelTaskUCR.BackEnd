@@ -15,6 +15,10 @@ namespace IntelTaskUCR.Domain.Interfaces
 
         Task<ETareas?> GetByIdAsync(int id);
         
+        Task<IEnumerable<ETareas>> GetAllByIdUsuarioCreadorAsync(int id);
+        
+        Task<IEnumerable<ETareas>> GetAllByIdUsuarioAsignadoAsync(int id);
+        
         Task<ETareas?> GetByIdWithRelacionesAsync(int id);
         // Task<ETareas?> GetByIdWithTareasOrigenAsync(int id);
         // Task<ETareas?> GetByIdWithTareasHijasAsync(int id);

@@ -24,6 +24,6 @@
 
         public List<TareasDto>? TareasUsuarioAsignado { get; set; }
         
-        public List<TareasDto>? TareasUsuarioCreado { get; set; }
+        public List<TareasDto>? TareasUsuarioCreador { get; set; }
     }
 }
