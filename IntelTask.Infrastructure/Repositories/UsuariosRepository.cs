@@ -50,6 +50,13 @@ namespace IntelTaskUCR.Infrastructure.Repositories
                 .FirstOrDefaultAsync(t => t.CN_Id_usuario == id);
         }
         
+        public async Task<EUsuarios?> GetByIdWithTareasCreadorAsync(int id)
+        {
+            return await _context.T_Usuarios
+                .Include(t => t.TareasUsuarioCreador)
+                .FirstOrDefaultAsync(t => t.CN_Id_usuario == id);
+        }
+        
         public async Task<EUsuarios?> GetByCorreo(string correo)
         {
             return await _context.T_Usuarios

@@ -14,6 +14,8 @@ namespace IntelTaskUCR.Domain.Interfaces
         Task<IEnumerable<EUsuarios>> GetAllWithRelacionesAsync();
         
         Task<EUsuarios?> GetByIdWithTareasAsignadasAsync(int id);
+        
+        Task<EUsuarios?> GetByIdWithTareasCreadorAsync(int id);
 
         Task<EUsuarios?> GetByIdAsync(int id);
         

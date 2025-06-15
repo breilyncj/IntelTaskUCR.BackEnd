@@ -77,7 +77,7 @@ namespace IntelTaskUCR.Infrastructure.Context
                                         .HasForeignKey(t => t.CN_Usuario_creador)
                                         .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<ERoles>().ToTable("T_Roles");
+                        modelBuilder.Entity<ERoles>().ToTable("T_Roles");
                         modelBuilder.Entity<ERoles>().HasKey(d => d.CN_Id_rol);
 
                         modelBuilder.Entity<EOficinas>().ToTable("T_Oficinas");

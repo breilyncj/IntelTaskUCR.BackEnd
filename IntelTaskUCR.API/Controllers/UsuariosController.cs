@@ -62,6 +62,13 @@ namespace IntelTaskUCR.API.Controllers
             var usuario = await _repository.GetByIdWithTareasAsignadasAsync(id);
             return usuario != null ? Ok(MapToDto(usuario)) : NotFound();
         }
+        
+        [HttpGet("WithTareasCreador/{id}")]
+        public async Task<IActionResult> GetWithTareasCreador(int id)
+        {
+            var usuario = await _repository.GetByIdWithTareasCreadorAsync(id);
+            return usuario != null ? Ok(MapToDto(usuario)) : NotFound();
+        }
 
         // [HttpPost]
         // public async Task<IActionResult> Create([FromBody] EUsuarios entity)
@@ -165,6 +172,26 @@ namespace IntelTaskUCR.API.Controllers
                 CN_Usuario_asignado = tareasAsignadas.CN_Usuario_asignado,
                 
             }).ToList() ?? new List<TareasDto>(),
+            
+            TareasUsuarioCreado  = u.TareasUsuarioCreador?.Select(tareasCreadas => new TareasDto()
+            {
+                CN_Id_tarea = tareasCreadas.CN_Id_tarea,
+                CN_Tarea_origen = tareasCreadas.CN_Tarea_origen,
+                CT_Titulo_tarea = tareasCreadas.CT_Titulo_tarea,
+                CT_Descripcion_tarea = tareasCreadas.CT_Descripcion_tarea,
+                CT_Descripcion_espera = tareasCreadas.CT_Descripcion_espera,
+                CN_Id_complejidad = tareasCreadas.CN_Id_complejidad,
+                CN_Id_estado = tareasCreadas.CN_Id_estado,
+                CN_Id_prioridad = tareasCreadas.CN_Id_prioridad,
+                CN_Numero_GIS = tareasCreadas.CN_Numero_GIS,
+                CF_Fecha_asignacion = tareasCreadas.CF_Fecha_asignacion,
+                CF_Fecha_limite = tareasCreadas.CF_Fecha_limite,
+                CF_Fecha_finalizacion = tareasCreadas.CF_Fecha_finalizacion,
+                CN_Usuario_creador = tareasCreadas.CN_Usuario_creador,
+                CN_Usuario_asignado = tareasCreadas.CN_Usuario_asignado,
+                
+            }).ToList() ?? new List<TareasDto>(),
+            
             
             FrecuenciaRecordatorios = u.FrecuenciaRecordatorios?.Select(frecuencias => new FrecuenciaRecordatorioDto()
             {

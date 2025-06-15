@@ -23,5 +23,7 @@
         public List<FrecuenciaRecordatorioDto>? FrecuenciaRecordatorios { get; set; }
 
         public List<TareasDto>? TareasUsuarioAsignado { get; set; }
+        
+        public List<TareasDto>? TareasUsuarioCreado { get; set; }
     }
 }
