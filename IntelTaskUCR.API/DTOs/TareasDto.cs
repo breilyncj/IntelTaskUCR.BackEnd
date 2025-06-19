@@ -6,7 +6,7 @@
         public int? CN_Tarea_origen { get; set; }
         public string CT_Titulo_tarea { get; set; }
         public string CT_Descripcion_tarea { get; set; }
-        public string CT_Descripcion_espera { get; set; }
+        public string? CT_Descripcion_espera { get; set; }
         public byte CN_Id_complejidad { get; set; }
         public byte CN_Id_estado { get; set; }
         public byte CN_Id_prioridad { get; set; }
