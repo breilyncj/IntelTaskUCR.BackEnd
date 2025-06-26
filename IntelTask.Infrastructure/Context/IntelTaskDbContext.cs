@@ -36,6 +36,11 @@ namespace IntelTaskUCR.Infrastructure.Context
 
         public DbSet<ENotificacionesXUsuarios> T_Notificaciones_X_Usuarios { get; set; } 
 
+
+        public DbSet<EAdjuntos> T_Adjuntos { get; set; }
+
+        public DbSet<EAdjuntosXTareas> T_Adjuntos_X_Tareas {  get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
                 {
                         modelBuilder.Entity<EDemo>().ToTable("T_Demo");
@@ -47,7 +52,14 @@ namespace IntelTaskUCR.Infrastructure.Context
                         modelBuilder.Entity<ETareas>().ToTable("T_Tareas");
                         modelBuilder.Entity<ETareas>().HasKey(d => d.CN_Id_tarea);
 
-                        modelBuilder.Entity<ETareas>()
+                        modelBuilder.Entity<EAdjuntos>().ToTable("T_Adjuntos");
+                        modelBuilder.Entity<EAdjuntos>().HasKey(d => d.CN_Id_adjuntos);
+
+                        modelBuilder.Entity<EAdjuntosXTareas>().ToTable("T_Adjuntos_X_Tareas");
+                        modelBuilder.Entity<EAdjuntosXTareas>().HasKey(d => new { d.CN_Id_adjuntos, d.CN_Id_tarea });
+
+
+            modelBuilder.Entity<ETareas>()
                             .HasOne(d => d.TareaOrigen) // UNA tarea origen
                             .WithMany(d => d.TareasHijas) //MUCHAS hijas que la apuntan como origen
                             .HasForeignKey(d => d.CN_Tarea_origen) //Clave foranea -- compljeidades estados  prioridades

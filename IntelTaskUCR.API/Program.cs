@@ -22,6 +22,8 @@ builder.Services.AddScoped<ITareasJustificacionRechazoRepository, TareasJustific
 builder.Services.AddScoped<ITareasSeguimientoRepository, TareasSeguimientoRepository>();
 builder.Services.AddScoped<INotificacionesXUsuariosRepository, NotificacionesXUsuariosRepository>();
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+builder.Services.AddScoped<IAdjuntosRepository, AdjuntosRepository>();
+builder.Services.AddScoped<IAdjuntosXTareasRepository, AdjuntosXTareasRepository>();
 
 // Add Cors
 
