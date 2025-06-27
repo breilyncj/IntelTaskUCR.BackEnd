@@ -1,5 +1,6 @@
 ﻿using IntelTaskUCR.Domain.Entities;
 using IntelTaskUCR.Domain.Interfaces;
+using IntelTaskUCR.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IntelTaskUCR.API.Controllers
@@ -9,7 +10,18 @@ namespace IntelTaskUCR.API.Controllers
     public class AdjuntosController : Controller
     {
         private readonly IAdjuntosRepository _repository;
-        public AdjuntosController(IAdjuntosRepository repository) { _repository = repository; }
+        private readonly IAdjuntosRepository _adjuntoRepository;
+        private readonly IAdjuntosXTareasRepository _adjuntosXTareasRepository;
+
+        public AdjuntosController(
+            IAdjuntosRepository repository, 
+            IAdjuntosRepository adjuntoRepository, 
+            IAdjuntosXTareasRepository adjuntosXTareasRepository) 
+        { 
+            _repository = repository;
+            _adjuntoRepository = adjuntoRepository;
+            _adjuntosXTareasRepository = adjuntosXTareasRepository;
+        }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
@@ -47,5 +59,48 @@ namespace IntelTaskUCR.API.Controllers
             await _repository.DeleteAsync(id);
             return NoContent();
         }
+
+        [HttpPost("SubirAdjunto")]
+        public async Task<IActionResult> SubirAdjunto(IFormFile archivo, int idTarea, int idUsuario)
+        {
+            if (archivo == null || archivo.Length == 0)
+                return BadRequest("No se recibió archivo.");
+
+            // Ruta física
+            var nombreArchivo = Path.GetFileName(archivo.FileName);
+            var carpeta = Path.Combine("wwwroot", "uploads", "tareas", idTarea.ToString());
+            Directory.CreateDirectory(carpeta); // Crea si no existe
+            var rutaArchivo = Path.Combine(carpeta, nombreArchivo);
+
+            using (var stream = new FileStream(rutaArchivo, FileMode.Create))
+            {
+                await archivo.CopyToAsync(stream);
+            }
+
+            // Ruta relativa para guardar en base de datos
+            var rutaBD = Path.Combine("uploads", "tareas", idTarea.ToString(), nombreArchivo);
+
+            // Crear entidad Adjunto
+            var adjunto = new EAdjuntos
+            {
+                CT_Archivo_ruta = rutaBD.Replace("\\", "/"),
+                CN_Usuario_accion = idUsuario,
+                CF_Fecha_registro = DateTime.Now
+            };
+
+            await _adjuntoRepository.AddAsync(adjunto);
+
+            // Ahora asocia a tarea
+            var relacion = new EAdjuntosXTareas
+            {
+                CN_Id_adjuntos = adjunto.CN_Id_adjuntos,
+                CN_Id_tarea = idTarea
+            };
+
+            await _adjuntosXTareasRepository.AddAsync(relacion); // Guarda en tabla intermedia
+
+            return Ok("Archivo guardado y asociado.");
+        }
+
     }
 }

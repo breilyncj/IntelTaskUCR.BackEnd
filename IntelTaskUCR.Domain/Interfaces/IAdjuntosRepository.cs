@@ -18,5 +18,7 @@ namespace IntelTaskUCR.Domain.Interfaces
         Task UpdateAsync(EAdjuntos adjunto);
 
         Task DeleteAsync(int id);
+
+        Task AgregarAsync(EAdjuntos adjunto);
     }
 }

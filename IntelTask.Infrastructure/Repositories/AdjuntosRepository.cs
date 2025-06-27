@@ -53,5 +53,11 @@ namespace IntelTaskUCR.Infrastructure.Repositories
                 await _context.SaveChangesAsync();
             }
         }
+
+
+        public Task AgregarAsync(EAdjuntos adjunto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

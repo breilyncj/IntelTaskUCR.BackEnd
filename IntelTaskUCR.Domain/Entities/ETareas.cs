@@ -59,5 +59,9 @@ namespace IntelTaskUCR.Domain.Entities
         public ICollection<ETareasJustificacionRechazo>? TareasJustificacionRechazo { get; set; }
 
         public ICollection<ETareasSeguimiento>? TareasSeguimiento { get; set; }
+
+        //N:N
+
+        public ICollection<EAdjuntosXTareas> AdjuntosXTareas { get; set; }
     }
 }

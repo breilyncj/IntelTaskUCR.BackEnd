@@ -65,5 +65,11 @@ namespace IntelTaskUCR.Infrastructure.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public Task AgregarAsync(EAdjuntosXTareas relacion)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

@@ -59,6 +59,20 @@ namespace IntelTaskUCR.Infrastructure.Context
                         modelBuilder.Entity<EAdjuntosXTareas>().HasKey(d => new { d.CN_Id_adjuntos, d.CN_Id_tarea });
 
 
+                       modelBuilder.Entity<EAdjuntosXTareas>()
+                        .HasKey(x => new { x.CN_Id_adjuntos, x.CN_Id_tarea });
+
+                         modelBuilder.Entity<EAdjuntosXTareas>()
+                            .HasOne(x => x.Adjunto)     
+                            .WithMany(a => a.AdjuntosXTareas)
+                            .HasForeignKey(x => x.CN_Id_adjuntos);
+
+                    modelBuilder.Entity<EAdjuntosXTareas>()
+                        .HasOne(x => x.Tarea)
+                        .WithMany(t => t.AdjuntosXTareas)
+                        .HasForeignKey(x => x.CN_Id_tarea);
+
+
             modelBuilder.Entity<ETareas>()
                             .HasOne(d => d.TareaOrigen) // UNA tarea origen
                             .WithMany(d => d.TareasHijas) //MUCHAS hijas que la apuntan como origen
