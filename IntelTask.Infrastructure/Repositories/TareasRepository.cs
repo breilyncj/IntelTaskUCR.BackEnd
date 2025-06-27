@@ -36,7 +36,9 @@ namespace IntelTaskUCR.Infrastructure.Repositories
                 .Include(t => t.TareasIncumplimientos)
                 .Include(t => t.TareasSeguimiento)
                 .Include(t => t.TareasJustificacionRechazo)
-                .Include( t => t.Estados)
+                .Include(t => t.Estados)
+                .Include(t => t.AdjuntosXTareas)
+                    .ThenInclude(ax => ax.Adjunto)
                 .ToListAsync();
         }
 
@@ -57,6 +59,8 @@ namespace IntelTaskUCR.Infrastructure.Repositories
                 .Include(t => t.TareasSeguimiento)
                 .Include(t => t.TareasJustificacionRechazo)
                 .Include( t => t.Estados)
+                .Include(t => t.AdjuntosXTareas)
+                    .ThenInclude(ax => ax.Adjunto)
                 .Where(t => t.UsuarioCreador != null && t.UsuarioCreador.CN_Id_usuario == id)
                 .ToListAsync();
         }
@@ -74,6 +78,8 @@ namespace IntelTaskUCR.Infrastructure.Repositories
                 .Include(t => t.TareasSeguimiento)
                 .Include(t => t.TareasJustificacionRechazo)
                 .Include( t => t.Estados)
+                .Include(t => t.AdjuntosXTareas)
+                    .ThenInclude(ax => ax.Adjunto)
                 .Where(t => t.UsuarioAsignado != null && t.UsuarioAsignado.CN_Id_usuario == id)
                 .ToListAsync();
         }
@@ -91,6 +97,8 @@ namespace IntelTaskUCR.Infrastructure.Repositories
                 .Include(t => t.TareasSeguimiento)
                 .Include(t => t.TareasJustificacionRechazo)
                 .Include(t => t.Estados)
+                .Include(t => t.AdjuntosXTareas)
+                    .ThenInclude(ax => ax.Adjunto)
                 .FirstOrDefaultAsync(t => t.CN_Id_tarea == id); 
         }
 

@@ -230,7 +230,14 @@ namespace IntelTaskUCR.API.Controllers
                 CN_Id_tarea = rechazo.CN_Id_tarea,
                 CT_Descripcion_rechazo = rechazo.CT_Descripcion_rechazo,
                 CF_Fecha_hora_rechazo = rechazo.CF_Fecha_hora_rechazo
-            }).ToList() ?? new List<TareasJustificacionRechazoDto>()
+            }).ToList() ?? new List<TareasJustificacionRechazoDto>(),
+
+            Adjuntos = t.AdjuntosXTareas?.Select(ax => new AdjuntosDto
+            {
+                CN_Id_adjuntos = ax.CN_Id_adjuntos,
+                CT_Archivo_ruta = ax.Adjunto?.CT_Archivo_ruta,
+                CF_Fecha_registro = ax.Adjunto?.CF_Fecha_registro ?? DateTime.MinValue
+            }).ToList() ?? new List<AdjuntosDto>()
         };
 
         private ETareas MapToEntity(TareasDto dto) => new ETareas
@@ -248,7 +255,7 @@ namespace IntelTaskUCR.API.Controllers
             CF_Fecha_limite = dto.CF_Fecha_limite,
             CF_Fecha_finalizacion = dto.CF_Fecha_finalizacion,
             CN_Usuario_creador = dto.CN_Usuario_creador,
-            CN_Usuario_asignado = dto.CN_Usuario_asignado
+            CN_Usuario_asignado = dto.CN_Usuario_asignado,
         };
         
         private static void MapUpdateFields(ETareas entity, TareasDto dto)

@@ -36,6 +36,7 @@ namespace IntelTaskUCR.Domain.Entities
         public int CN_Usuario_creador { get ; set; }     
 
         public int? CN_Usuario_asignado { get; set; } 
+
         
         // Propiedad de nevagacion a la tarea origen
         
@@ -50,6 +51,8 @@ namespace IntelTaskUCR.Domain.Entities
         public EUsuarios? UsuarioAsignado { get; set; }
 
         public EUsuarios? UsuarioCreador  {get; set; }
+
+
 
         // Propiedad de navegacion (uno a muchos)
 

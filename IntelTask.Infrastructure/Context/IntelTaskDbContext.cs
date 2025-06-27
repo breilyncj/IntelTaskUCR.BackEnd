@@ -52,25 +52,22 @@ namespace IntelTaskUCR.Infrastructure.Context
                         modelBuilder.Entity<ETareas>().ToTable("T_Tareas");
                         modelBuilder.Entity<ETareas>().HasKey(d => d.CN_Id_tarea);
 
-                        modelBuilder.Entity<EAdjuntos>().ToTable("T_Adjuntos");
-                        modelBuilder.Entity<EAdjuntos>().HasKey(d => d.CN_Id_adjuntos);
+            modelBuilder.Entity<EAdjuntos>().ToTable("T_Adjuntos");
+            modelBuilder.Entity<EAdjuntos>().HasKey(d => d.CN_Id_adjuntos);
 
-                        modelBuilder.Entity<EAdjuntosXTareas>().ToTable("T_Adjuntos_X_Tareas");
-                        modelBuilder.Entity<EAdjuntosXTareas>().HasKey(d => new { d.CN_Id_adjuntos, d.CN_Id_tarea });
+            modelBuilder.Entity<EAdjuntosXTareas>().ToTable("T_Adjuntos_X_Tareas");
+            modelBuilder.Entity<EAdjuntosXTareas>().HasKey(d => new { d.CN_Id_adjuntos, d.CN_Id_tarea });
 
+            modelBuilder.Entity<EAdjuntosXTareas>()
+                .HasOne(x => x.Adjunto)
+                .WithMany(a => a.AdjuntosXTareas)
+                .HasForeignKey(x => x.CN_Id_adjuntos);
 
-                       modelBuilder.Entity<EAdjuntosXTareas>()
-                        .HasKey(x => new { x.CN_Id_adjuntos, x.CN_Id_tarea });
+            modelBuilder.Entity<EAdjuntosXTareas>()
+                .HasOne(x => x.Tarea)
+                .WithMany(t => t.AdjuntosXTareas)
+                .HasForeignKey(x => x.CN_Id_tarea);
 
-                         modelBuilder.Entity<EAdjuntosXTareas>()
-                            .HasOne(x => x.Adjunto)     
-                            .WithMany(a => a.AdjuntosXTareas)
-                            .HasForeignKey(x => x.CN_Id_adjuntos);
-
-                    modelBuilder.Entity<EAdjuntosXTareas>()
-                        .HasOne(x => x.Tarea)
-                        .WithMany(t => t.AdjuntosXTareas)
-                        .HasForeignKey(x => x.CN_Id_tarea);
 
 
             modelBuilder.Entity<ETareas>()

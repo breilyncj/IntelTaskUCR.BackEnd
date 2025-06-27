@@ -16,6 +16,8 @@
         public DateTime CF_Fecha_finalizacion { get; set; }
         public int CN_Usuario_creador { get; set; }
         public int? CN_Usuario_asignado { get; set; }
+
+        public int? CN_Id_adjuntos { get; set; }
         
         public TareasDto? TareaOrigen { get; set; }
 
@@ -38,6 +40,8 @@
 
         public List<TareasSeguimientoDto>? TareasSeguimiento { get; set; }
 
+        //N:N
+        public List<AdjuntosDto> Adjuntos { get; set; } = new();
 
 
 
