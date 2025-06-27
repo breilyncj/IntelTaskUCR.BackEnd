@@ -102,5 +102,13 @@ namespace IntelTaskUCR.API.Controllers
             return Ok("Archivo guardado y asociado.");
         }
 
+        [HttpDelete("Desasociar/{idAdjunto}/{idTarea}")]
+        public async Task<IActionResult> DesasociarAdjunto(int idAdjunto, int idTarea)
+        {
+            await _adjuntosXTareasRepository.DesasociarAdjuntoDeTareaAsync(idAdjunto, idTarea);
+            return NoContent();
+        }
+
+
     }
 }

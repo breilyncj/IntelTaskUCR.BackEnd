@@ -71,5 +71,18 @@ namespace IntelTaskUCR.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
+        public async Task DesasociarAdjuntoDeTareaAsync(int idAdjunto, int idTarea)
+        {
+            var relacion = await _context.T_Adjuntos_X_Tareas
+                .FirstOrDefaultAsync(x => x.CN_Id_adjuntos == idAdjunto && x.CN_Id_tarea == idTarea);
+
+            if (relacion != null)
+            {
+                _context.T_Adjuntos_X_Tareas.Remove(relacion);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+
     }
 }
