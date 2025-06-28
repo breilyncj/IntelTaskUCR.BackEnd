@@ -103,7 +103,25 @@ namespace IntelTaskUCR.API.Controllers
             await _repository.DeleteAsync(id);
             return NoContent();
         }
-        
+
+        [HttpPut("{id}/estado")]
+        public async Task<IActionResult> UpdateEstado(int id, [FromBody] byte nuevoEstadoId)
+        {
+            var entity = await _repository.GetByIdAsync(id);
+
+            if (entity == null)
+            {
+                return NotFound($"No se encontró la tarea con ID {id}");
+            }
+
+            entity.CN_Id_estado = nuevoEstadoId;
+
+            await _repository.UpdateAsync(entity);
+
+            return NoContent();
+        }
+
+
         private TareasDto MapToDto(ETareas t) => new TareasDto
         {
             CN_Id_tarea = t.CN_Id_tarea,
