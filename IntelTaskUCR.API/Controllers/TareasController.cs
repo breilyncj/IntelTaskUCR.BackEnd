@@ -254,7 +254,8 @@ namespace IntelTaskUCR.API.Controllers
             {
                 CN_Id_adjuntos = ax.CN_Id_adjuntos,
                 CT_Archivo_ruta = ax.Adjunto?.CT_Archivo_ruta,
-                CF_Fecha_registro = ax.Adjunto?.CF_Fecha_registro ?? DateTime.MinValue
+                CF_Fecha_registro = ax.Adjunto?.CF_Fecha_registro ?? DateTime.MinValue,
+                NombreArchivo = Path.GetFileName(ax.Adjunto.CT_Archivo_ruta)
             }).ToList() ?? new List<AdjuntosDto>()
         };
 

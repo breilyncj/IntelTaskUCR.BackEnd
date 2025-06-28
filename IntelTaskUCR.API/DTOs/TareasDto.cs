@@ -3,6 +3,7 @@
     public class TareasDto
     {
         public int CN_Id_tarea { get; set; }
+
         public int? CN_Tarea_origen { get; set; }
         public string CT_Titulo_tarea { get; set; }
         public string CT_Descripcion_tarea { get; set; }
