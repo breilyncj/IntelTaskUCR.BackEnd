@@ -18,5 +18,8 @@ namespace IntelTaskUCR.Domain.Interfaces
         Task UpdateAsync(ENotificaciones notificaciones);
 
         Task DeleteAsync(int id);
+
+        Task<int> CrearNotificacionParaUsuarios(ENotificaciones notificacion, List<ENotificacionesXUsuarios> usuariosRelacionados);
+
     }
 }

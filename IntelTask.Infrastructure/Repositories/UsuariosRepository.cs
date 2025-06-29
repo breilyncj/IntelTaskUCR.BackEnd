@@ -100,5 +100,20 @@ namespace IntelTaskUCR.Infrastructure.Repositories
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<ENotificaciones>> GetNotificacionesEnviadasPor(string correoOrigen)
+        {
+            return await _context.T_Notificaciones
+                .Where(n => n.CT_Correo_origen == correoOrigen)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<ENotificaciones>> GetNotificacionesRecibidasPor(int idUsuario)
+        {
+            return await _context.T_Notificaciones_X_Usuarios
+                .Where(nx => nx.CN_Id_usuario == idUsuario)
+                .Include(nx => nx.Notificacion)
+                .Select(nx => nx.Notificacion)
+                .ToListAsync();
+        }
     }
 }

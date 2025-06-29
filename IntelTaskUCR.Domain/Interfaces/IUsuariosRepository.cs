@@ -30,6 +30,8 @@ namespace IntelTaskUCR.Domain.Interfaces
         Task DeleteAsync(int id);
 
         Task<IEnumerable<ENotificaciones>> GetNotificacionesDeUsuario(int idUsuario);
+        Task<IEnumerable<ENotificaciones>> GetNotificacionesEnviadasPor(string correoOrigen);
+        Task<IEnumerable<ENotificaciones>> GetNotificacionesRecibidasPor(int idUsuario);
 
     }
 }

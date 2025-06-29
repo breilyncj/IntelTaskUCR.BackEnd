@@ -33,6 +33,14 @@ namespace IntelTaskUCR.Infrastructure.Repositories
         //Guarda
         public async Task AddAsync(ENotificaciones notificaciones)
         {
+            int ultimoId = 0;
+            if (await _context.T_Notificaciones.AnyAsync())
+            {
+                ultimoId = await _context.T_Notificaciones.MaxAsync(n => n.CN_Id_notificacion);
+            }
+            notificaciones.CN_Id_notificacion = ultimoId + 1;
+
+            // PASO 2: Agregar y guardar
             await _context.T_Notificaciones.AddAsync(notificaciones);
             await _context.SaveChangesAsync();
         }
@@ -55,23 +63,26 @@ namespace IntelTaskUCR.Infrastructure.Repositories
             }
         }
 
-
-        public async Task CrearNotificacionParaUsuarios(ENotificaciones notificacion, List<int> idsUsuarios)
+        public async Task<int> CrearNotificacionParaUsuarios(ENotificaciones notificacion, List<ENotificacionesXUsuarios> usuariosRelacionados)
         {
+            // 1. Asignar manualmente el ID de la notificación (ejemplo: max ID + 1)
+            int maxId = await _context.T_Notificaciones.MaxAsync(n => (int?)n.CN_Id_notificacion) ?? 0;
+            notificacion.CN_Id_notificacion = maxId + 1;
+
+            // 2. Agregar la notificación
             _context.T_Notificaciones.Add(notificacion);
             await _context.SaveChangesAsync();
 
-            foreach (var userId in idsUsuarios)
+            // 3. Asignar el ID de notificación a cada usuario relacionado y agregarlos
+            foreach (var usuarioNotificacion in usuariosRelacionados)
             {
-                var nuxu = new ENotificacionesXUsuarios
-                {
-                    CN_Id_notificacion = notificacion.CN_Id_notificacion,
-                    CN_Id_usuario = userId
-                };
-                _context.T_Notificaciones_X_Usuarios.Add(nuxu);
+                usuarioNotificacion.CN_Id_notificacion = notificacion.CN_Id_notificacion;
+                _context.T_Notificaciones_X_Usuarios.Add(usuarioNotificacion);
             }
 
             await _context.SaveChangesAsync();
+
+            return notificacion.CN_Id_notificacion;
         }
 
     }

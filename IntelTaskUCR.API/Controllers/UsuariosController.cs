@@ -103,6 +103,20 @@ namespace IntelTaskUCR.API.Controllers
             return Ok(notificaciones);
         }
 
+        [HttpGet("GetNotificacionesEnviadasPor/{correo}")]
+        public async Task<IActionResult> GetNotificacionesEnviadasPor(string correo)
+        {
+            var result = await _repository.GetNotificacionesEnviadasPor(correo);
+            return Ok(result);
+        }
+
+        [HttpGet("GetNotificacionesRecibidasPor/{idUsuario}")]
+        public async Task<IActionResult> GetNotificacionesRecibidasPor(int idUsuario)
+        {
+            var result = await _repository.GetNotificacionesRecibidasPor(idUsuario);
+            return Ok(result);
+        }
+
 
         private UsuariosDto MapToDto(EUsuarios u) => new UsuariosDto
         {

@@ -1,4 +1,5 @@
-﻿using IntelTaskUCR.Domain.Entities;
+﻿using IntelTaskUCR.API.DTOs;
+using IntelTaskUCR.Domain.Entities;
 using IntelTaskUCR.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,12 +27,52 @@ namespace IntelTaskUCR.API.Controllers
             return item != null ? Ok(item) : NotFound();
         }
 
+        
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] ENotificaciones entity)
+        public async Task<IActionResult> Create([FromBody] NotificacionDto dto)
         {
-            await _repository.AddAsync(entity);
-            return CreatedAtAction(nameof(Get), new { id = entity.CN_Id_notificacion }, entity);
+            var entity = new ENotificaciones
+            {
+                CN_Tipo_notificacion = dto.CN_Tipo_notificacion,
+                CT_Titulo_notificacion = dto.CT_Titulo_notificacion,
+                CT_Texto_notificacion = dto.CT_Texto_notificacion,
+                CT_Correo_origen = dto.CT_Correo_origen,
+                CF_Fecha_registro = dto.CF_Fecha_registro,
+                CF_Fecha_notificacion = dto.CF_Fecha_notificacion,
+                CN_Id_recordatorio = dto.CN_Id_recordatorio
+            };
+
+            var usuariosRelacionados = dto.NotificacionesXUsuarios
+                .Select(x => new ENotificacionesXUsuarios
+                {
+                    CN_Id_usuario = x.CN_Id_usuario,
+                    CT_Correo_destino = x.CT_Correo_destino
+                }).ToList();
+
+            await _repository.CrearNotificacionParaUsuarios(entity, usuariosRelacionados);
+
+            var result = new NotificacionResponseDto
+            {
+                CN_Id_notificacion = entity.CN_Id_notificacion,
+                CN_Tipo_notificacion = entity.CN_Tipo_notificacion,
+                CT_Titulo_notificacion = entity.CT_Titulo_notificacion,
+                CT_Texto_notificacion = entity.CT_Texto_notificacion,
+                CT_Correo_origen = entity.CT_Correo_origen,
+                CF_Fecha_registro = entity.CF_Fecha_registro,
+                CF_Fecha_notificacion = entity.CF_Fecha_notificacion,
+                CN_Id_recordatorio = entity.CN_Id_recordatorio,
+                NotificacionesXUsuarios = usuariosRelacionados.Select(x => new NotificacionXUsuarioResponseDto
+                {
+                    CN_Id_usuario = x.CN_Id_usuario,
+                    CT_Correo_destino = x.CT_Correo_destino
+                }).ToList()
+            };
+
+            return CreatedAtAction(nameof(Get), new { id = entity.CN_Id_notificacion }, result);
         }
+
+
+
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] ENotificaciones entity)

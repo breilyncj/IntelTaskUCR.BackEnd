@@ -69,8 +69,8 @@ namespace IntelTaskUCR.Infrastructure.Context
                 .HasForeignKey(x => x.CN_Id_tarea);
 
 
-            modelBuilder.Entity<ENotificacionesXUsuarios>()
-            .HasKey(x => x.CN_Id_notificacion);
+            modelBuilder.Entity<ENotificacionesXUsuarios>().HasKey(d => new { d.CN_Id_notificacion, d.CN_Id_usuario });
+
 
             modelBuilder.Entity<ENotificacionesXUsuarios>()
                 .HasOne(x => x.Notificacion)
