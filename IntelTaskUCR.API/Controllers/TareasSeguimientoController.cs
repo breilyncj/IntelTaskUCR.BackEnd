@@ -88,6 +88,8 @@ namespace IntelTaskUCR.API.Controllers
             return NoContent();
         }
 
+
+
         private TareasSeguimientoDto MapToDto(ETareasSeguimiento entity)
         {
             return new TareasSeguimientoDto

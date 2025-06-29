@@ -23,7 +23,9 @@ namespace IntelTaskUCR.Domain.Entities
 
         public DateTime CF_Fecha_notificacion { get; set; } 
 
-        public int CN_Id_recordatorio { get; set; } 
+        public int? CN_Id_recordatorio { get; set; }
+
+        public ICollection<ENotificacionesXUsuarios> NotificacionesXUsuarios { get; set; }
 
     }
 }

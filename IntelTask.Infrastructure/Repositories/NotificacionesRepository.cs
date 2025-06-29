@@ -54,5 +54,25 @@ namespace IntelTaskUCR.Infrastructure.Repositories
                 await _context.SaveChangesAsync();
             }
         }
+
+
+        public async Task CrearNotificacionParaUsuarios(ENotificaciones notificacion, List<int> idsUsuarios)
+        {
+            _context.T_Notificaciones.Add(notificacion);
+            await _context.SaveChangesAsync();
+
+            foreach (var userId in idsUsuarios)
+            {
+                var nuxu = new ENotificacionesXUsuarios
+                {
+                    CN_Id_notificacion = notificacion.CN_Id_notificacion,
+                    CN_Id_usuario = userId
+                };
+                _context.T_Notificaciones_X_Usuarios.Add(nuxu);
+            }
+
+            await _context.SaveChangesAsync();
+        }
+
     }
 }

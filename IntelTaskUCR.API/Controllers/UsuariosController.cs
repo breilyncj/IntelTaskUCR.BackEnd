@@ -12,12 +12,6 @@ namespace IntelTaskUCR.API.Controllers
         private readonly IUsuariosRepository _repository;
         public UsuariosController(IUsuariosRepository repository) { _repository = repository; }
 
-        // [HttpGet]
-        // public async Task<IActionResult> GetAll()
-        // {
-        //     var items = await _repository.GetAllAsync();
-        //     return Ok(items);
-        // }
         
         [HttpGet]
         public async Task<IActionResult> GetAll()
@@ -35,13 +29,6 @@ namespace IntelTaskUCR.API.Controllers
             return Ok(dtoList);
         }
 
-        // [HttpGet("{id}")]
-        // public async Task<IActionResult> Get(int id)
-        // {
-        //     var item = await _repository.GetByIdAsync(id);
-        //     return item != null ? Ok(item) : NotFound();
-        // }
-        
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
@@ -70,12 +57,6 @@ namespace IntelTaskUCR.API.Controllers
             return usuario != null ? Ok(MapToDto(usuario)) : NotFound();
         }
 
-        // [HttpPost]
-        // public async Task<IActionResult> Create([FromBody] EUsuarios entity)
-        // {
-        //     await _repository.AddAsync(entity);
-        //     return CreatedAtAction(nameof(Get), new { id = entity.CN_Id_usuario }, entity);
-        // }
         
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] UsuariosDto dto)
@@ -85,32 +66,6 @@ namespace IntelTaskUCR.API.Controllers
             return CreatedAtAction(nameof(Get), new { id = entity.CN_Id_usuario }, MapToDto(entity));
         }
 
-        // [HttpPut("{id}")]
-        // public async Task<IActionResult> Update(int id, [FromBody] EUsuarios entity)
-        // {
-        //
-        //     EUsuarios findUser = await _repository.GetByIdAsync(id);
-        //
-        //     if (findUser != null) {
-        //
-        //         findUser.CN_Id_usuario = entity.CN_Id_usuario; // Si hubiera incremento en la bd esta linea se ignora
-        //         findUser.CT_Nombre_usuario = entity.CT_Nombre_usuario;
-        //         findUser.CT_Correo_usuario = entity.CT_Correo_usuario;
-        //         findUser.CF_Fecha_nacimiento = entity.CF_Fecha_nacimiento;
-        //         findUser.CT_Contrasenna = entity.CT_Contrasenna;
-        //         findUser.CB_Estado_usuario = entity.CB_Estado_usuario;
-        //         findUser.CF_Fecha_creacion_usuario = entity.CF_Fecha_creacion_usuario;
-        //         findUser.CF_Fecha_modificacion_usuario = entity.CF_Fecha_modificacion_usuario;
-        //         findUser.CN_Id_rol = entity.CN_Id_rol;
-        //
-        //         await _repository.UpdateAsync(findUser);
-        //         return NoContent();
-        //     
-        //     } else
-        //     {
-        //         return NotFound("El id del usuario no existe");
-        //     }
-        // }
         
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] UsuariosDto dto)
@@ -139,6 +94,13 @@ namespace IntelTaskUCR.API.Controllers
         {
             await _repository.DeleteAsync(id);
             return NoContent();
+        }
+
+        [HttpGet("GetNotificacionesDeUsuario/{idUsuario}")]
+        public async Task<IActionResult> GetNotificacionesUsuario(int idUsuario)
+        {
+            var notificaciones = await _repository.GetNotificacionesDeUsuario(idUsuario);
+            return Ok(notificaciones);
         }
 
 
@@ -237,5 +199,7 @@ namespace IntelTaskUCR.API.Controllers
             entity.CF_Fecha_nacimiento = dto.CF_Fecha_nacimiento;
             entity.CB_Estado_usuario = dto.CB_Estado_usuario;
         }
+
+
     }
 }

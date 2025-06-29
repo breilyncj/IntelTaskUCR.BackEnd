@@ -12,7 +12,11 @@ namespace IntelTaskUCR.Domain.Entities
 
         public int CN_Id_usuario { get; set; } 
 
-        public string CT_Correo_destino { get; set; } 
+        public string CT_Correo_destino { get; set; }
+
+        public ENotificaciones Notificacion { get; set; }
+
+        public EUsuarios Usuario { get; set; }
 
 
     }

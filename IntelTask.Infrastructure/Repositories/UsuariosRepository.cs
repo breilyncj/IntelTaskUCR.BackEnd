@@ -89,5 +89,16 @@ namespace IntelTaskUCR.Infrastructure.Repositories
                 await _context.SaveChangesAsync();
             }
         }
+
+
+        public async Task<IEnumerable<ENotificaciones>> GetNotificacionesDeUsuario(int idUsuario)
+        {
+            return await _context.T_Notificaciones_X_Usuarios
+                .Where(nuxu => nuxu.CN_Id_usuario == idUsuario)
+                .Include(nuxu => nuxu.Notificacion)
+                .Select(nuxu => nuxu.Notificacion)
+                .ToListAsync();
+        }
+
     }
 }

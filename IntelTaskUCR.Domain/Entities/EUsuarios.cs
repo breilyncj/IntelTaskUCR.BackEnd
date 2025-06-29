@@ -35,5 +35,7 @@ namespace IntelTaskUCR.Domain.Entities
 
         public ICollection<ETareas>? TareasUsuarioCreador {  get; set; }
 
+        public ICollection<ENotificacionesXUsuarios> NotificacionesXUsuarios { get; set; }
+
     }
 }
