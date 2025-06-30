@@ -17,7 +17,5 @@ namespace IntelTaskUCR.Domain.Entities
         public ENotificaciones Notificacion { get; set; }
 
         public EUsuarios Usuario { get; set; }
-
-
     }
 }

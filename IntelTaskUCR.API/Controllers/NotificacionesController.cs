@@ -105,5 +105,13 @@ namespace IntelTaskUCR.API.Controllers
             await _repository.DeleteAsync(id);
             return NoContent();
         }
+
+        [HttpGet("filtrar")]
+        public async Task<IActionResult> GetByUsuarioYTipo([FromQuery] int usuarioId, [FromQuery] int tipoNotificacion)
+        {
+            var items = await _repository.GetByUsuarioYTipoAsync(usuarioId, tipoNotificacion);
+            return Ok(items);
+        }
+
     }
 }

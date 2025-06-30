@@ -21,5 +21,7 @@ namespace IntelTaskUCR.Domain.Interfaces
 
         Task<int> CrearNotificacionParaUsuarios(ENotificaciones notificacion, List<ENotificacionesXUsuarios> usuariosRelacionados);
 
+        Task<IEnumerable<ENotificaciones>> GetByUsuarioYTipoAsync(int usuarioId, int tipoNotificacion);
+
     }
 }

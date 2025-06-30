@@ -175,7 +175,7 @@ namespace IntelTaskUCR.Infrastructure.Context
                        
 
                         modelBuilder.Entity<ENotificacionesXUsuarios>().ToTable("TI_Notificaciones_X_Usuarios");
-                        modelBuilder.Entity<ENotificacionesXUsuarios>().HasKey(d => d.CN_Id_notificacion);
+               
 
         }
     }

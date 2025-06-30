@@ -85,5 +85,14 @@ namespace IntelTaskUCR.Infrastructure.Repositories
             return notificacion.CN_Id_notificacion;
         }
 
+
+        public async Task<IEnumerable<ENotificaciones>> GetByUsuarioYTipoAsync(int usuarioId, int tipoNotificacion)
+        {
+            return await _context.T_Notificaciones
+                .Where(n => n.CN_Tipo_notificacion == tipoNotificacion &&
+                            n.NotificacionesXUsuarios.Any(nxu => nxu.CN_Id_usuario == usuarioId))
+                .ToListAsync();
+        }
+
     }
 }
