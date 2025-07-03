@@ -61,7 +61,7 @@ namespace IntelTaskUCR.API.Controllers
         }
 
         [HttpPost("SubirAdjunto")]
-        public async Task<IActionResult> SubirAdjunto(IFormFile archivo, int idTarea, int idUsuario)
+        public async Task<IActionResult> SubirAdjunto(IFormFile archivo, [FromQuery] int idTarea, [FromQuery] int idUsuario)
         {
             if (archivo == null || archivo.Length == 0)
                 return BadRequest("No se recibió archivo.");
