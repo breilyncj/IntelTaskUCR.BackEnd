@@ -37,8 +37,8 @@ namespace IntelTaskUCR.API.Controllers
                 CT_Titulo_notificacion = dto.CT_Titulo_notificacion,
                 CT_Texto_notificacion = dto.CT_Texto_notificacion,
                 CT_Correo_origen = dto.CT_Correo_origen,
-                CF_Fecha_registro = dto.CF_Fecha_registro,
-                CF_Fecha_notificacion = dto.CF_Fecha_notificacion,
+                CF_Fecha_registro = dto.CF_Fecha_registro.AddHours(-6),
+                CF_Fecha_notificacion = dto.CF_Fecha_notificacion.AddHours(-6),
                 CN_Id_recordatorio = dto.CN_Id_recordatorio
             };
 
