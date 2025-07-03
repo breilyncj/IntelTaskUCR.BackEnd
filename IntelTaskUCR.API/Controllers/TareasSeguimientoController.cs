@@ -51,16 +51,21 @@ namespace IntelTaskUCR.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] TareasSeguimientoDto dto)
+        public async Task<IActionResult> Create([FromBody] TareaSeguimientoDto dto)
         {
-            var entity = MapToEntity(dto);
+            var entity = new ETareasSeguimiento
+            {
+                CN_Id_tarea = dto.CN_Id_tarea,
+                CT_Comentario = dto.CT_Comentario ?? string.Empty,
+
+                // Aquí controlas la zona horaria:
+                CF_Fecha_seguimiento = DateTime.UtcNow.AddHours(-6) // O usa ConvertTimeFromUtc si prefieres
+            };
 
             await _repository.AddAsync(entity);
 
             return CreatedAtAction(nameof(Get), new { id = entity.CN_Id_seguimiento }, dto);
         }
-
-
 
 
         [HttpPut("{id}")]
