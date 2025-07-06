@@ -10,6 +10,8 @@ namespace IntelTaskUCR.Infrastructure.Context
 
         public DbSet<EDemo> T_Demo { get; set; }
 
+        public DbSet<EBitacoraCambiosEstados> T_Bitacora_Cambios_Estados { get; set; }
+
         public DbSet<EUsuarios> T_Usuarios { get; set; }
 
         public DbSet<ETareas> T_Tareas { get; set; }
@@ -46,7 +48,10 @@ namespace IntelTaskUCR.Infrastructure.Context
                         modelBuilder.Entity<EDemo>().ToTable("T_Demo");
                         modelBuilder.Entity<EDemo>().HasKey(d => d.TN_Codigo);
 
-                        modelBuilder.Entity<EUsuarios>().ToTable("T_Usuarios");
+            modelBuilder.Entity<EBitacoraCambiosEstados>().ToTable("T_Bitacora_Cambios_Estados");
+            modelBuilder.Entity<EBitacoraCambiosEstados>().HasKey(d => d.CN_Id_cambio_estado);
+
+            modelBuilder.Entity<EUsuarios>().ToTable("T_Usuarios");
                         modelBuilder.Entity<EUsuarios>().HasKey(d => d.CN_Id_usuario);
 
                         modelBuilder.Entity<ETareas>().ToTable("T_Tareas");

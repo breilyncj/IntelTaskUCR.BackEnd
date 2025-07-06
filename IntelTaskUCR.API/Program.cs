@@ -24,6 +24,7 @@ builder.Services.AddScoped<INotificacionesXUsuariosRepository, NotificacionesXUs
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IAdjuntosRepository, AdjuntosRepository>();
 builder.Services.AddScoped<IAdjuntosXTareasRepository, AdjuntosXTareasRepository>();
+builder.Services.AddScoped<IBitacoraCambiosEstadosRepository, BitacoraCambiosEstadosRepository>();
 
 // Add Cors
 
